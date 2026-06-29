@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/history"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/history"
+	"glash/internal/ui/styles"
 	"github.com/stretchr/testify/require"
 )
 

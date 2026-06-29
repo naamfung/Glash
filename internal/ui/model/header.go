@@ -5,11 +5,11 @@ import (
 	"strings"
 
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/fsext"
-	"github.com/charmbracelet/glash/internal/session"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/config"
+	"glash/internal/fsext"
+	"glash/internal/session"
+	"glash/internal/ui/common"
+	"glash/internal/ui/styles"
 	uv "github.com/charmbracelet/ultraviolet"
 	"github.com/charmbracelet/x/ansi"
 )

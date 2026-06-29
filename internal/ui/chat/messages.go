@@ -9,13 +9,13 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"charm.land/catwalk/pkg/catwalk"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/ui/anim"
-	"github.com/charmbracelet/glash/internal/ui/attachments"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/list"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/config"
+	"glash/internal/message"
+	"glash/internal/ui/anim"
+	"glash/internal/ui/attachments"
+	"glash/internal/ui/common"
+	"glash/internal/ui/list"
+	"glash/internal/ui/styles"
 )
 
 // MessageLeftPaddingTotal is the total width that is taken up by the border +

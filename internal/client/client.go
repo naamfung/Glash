@@ -12,9 +12,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/server"
+	"glash/internal/config"
+	"glash/internal/proto"
+	"glash/internal/server"
 	"github.com/google/uuid"
 )
 

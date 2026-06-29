@@ -4,9 +4,9 @@ import (
 	"testing"
 
 	tea "charm.land/bubbletea/v2"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/permission"
+	"glash/internal/ui/common"
+	"glash/internal/ui/styles"
 	"github.com/stretchr/testify/require"
 )
 

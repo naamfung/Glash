@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/config"
+	"glash/internal/config"
 	"github.com/invopop/jsonschema"
 	"github.com/stretchr/testify/require"
 )

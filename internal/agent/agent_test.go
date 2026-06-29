@@ -12,9 +12,9 @@ import (
 
 	"charm.land/fantasy"
 	"charm.land/x/vcr"
-	"github.com/charmbracelet/glash/internal/agent/tools"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/session"
+	"glash/internal/agent/tools"
+	"glash/internal/message"
+	"glash/internal/session"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 

@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/fsext"
+	"glash/internal/fsext"
 )
 
 const (

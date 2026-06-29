@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/charmbracelet/glash/internal/proto"
+	"glash/internal/proto"
 )
 
 // handlePostWorkspaceConfigSet sets a configuration field.

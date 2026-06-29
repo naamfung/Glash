@@ -10,12 +10,12 @@ import (
 	"charm.land/bubbles/v2/viewport"
 	tea "charm.land/bubbletea/v2"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/agent/tools"
-	"github.com/charmbracelet/glash/internal/fsext"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/stringext"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/agent/tools"
+	"glash/internal/fsext"
+	"glash/internal/permission"
+	"glash/internal/stringext"
+	"glash/internal/ui/common"
+	"glash/internal/ui/styles"
 	uv "github.com/charmbracelet/ultraviolet"
 )
 

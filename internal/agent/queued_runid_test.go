@@ -9,9 +9,9 @@ import (
 
 	"charm.land/catwalk/pkg/catwalk"
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/agent/notify"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/agent/notify"
+	"glash/internal/message"
+	"glash/internal/pubsub"
 	"github.com/stretchr/testify/require"
 )
 

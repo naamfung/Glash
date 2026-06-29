@@ -6,10 +6,10 @@ import (
 	"testing"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/shell"
+	"glash/internal/config"
+	"glash/internal/permission"
+	"glash/internal/pubsub"
+	"glash/internal/shell"
 	"github.com/stretchr/testify/require"
 )
 

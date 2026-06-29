@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
 	"github.com/stretchr/testify/require"
 )
 

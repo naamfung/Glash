@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/shell"
+	"glash/internal/shell"
 	"github.com/stretchr/testify/require"
 )
 

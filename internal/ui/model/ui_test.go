@@ -4,10 +4,10 @@ import (
 	"testing"
 
 	"charm.land/catwalk/pkg/catwalk"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/workspace"
+	"glash/internal/config"
+	"glash/internal/csync"
+	"glash/internal/ui/common"
+	"glash/internal/workspace"
 	"github.com/stretchr/testify/require"
 )
 

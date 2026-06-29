@@ -12,8 +12,8 @@ import (
 	"testing"
 
 	"charm.land/catwalk/pkg/catwalk"
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/env"
+	"glash/internal/csync"
+	"glash/internal/env"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

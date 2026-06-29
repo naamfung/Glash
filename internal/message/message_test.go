@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/db"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/session"
+	"glash/internal/db"
+	"glash/internal/pubsub"
+	"glash/internal/session"
 	"github.com/stretchr/testify/require"
 )
 

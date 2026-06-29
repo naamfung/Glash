@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/shell"
+	"glash/internal/shell"
 )
 
 const (

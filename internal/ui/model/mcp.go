@@ -5,10 +5,10 @@ import (
 	"strings"
 
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/agent/tools/mcp"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/agent/tools/mcp"
+	"glash/internal/config"
+	"glash/internal/ui/common"
+	"glash/internal/ui/styles"
 )
 
 // mcpInfo renders the MCP status section showing active MCP clients and their

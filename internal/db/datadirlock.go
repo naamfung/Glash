@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/lock"
-	"github.com/charmbracelet/glash/internal/version"
+	"glash/internal/lock"
+	"glash/internal/version"
 )
 
 // ErrDataDirLocked is returned by Connect when the data directory is

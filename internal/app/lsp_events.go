@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/lsp"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/csync"
+	"glash/internal/lsp"
+	"glash/internal/pubsub"
 )
 
 // LSPEventType represents the type of LSP event

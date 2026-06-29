@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/oauth"
-	"github.com/charmbracelet/glash/internal/proto"
+	"glash/internal/config"
+	"glash/internal/oauth"
+	"glash/internal/proto"
 	"github.com/stretchr/testify/require"
 )
 

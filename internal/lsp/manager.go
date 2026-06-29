@@ -13,9 +13,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/fsext"
+	"glash/internal/config"
+	"glash/internal/csync"
+	"glash/internal/fsext"
 	powernapconfig "github.com/charmbracelet/x/powernap/pkg/config"
 	powernap "github.com/charmbracelet/x/powernap/pkg/lsp"
 	"github.com/sourcegraph/jsonrpc2"

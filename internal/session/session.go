@@ -9,9 +9,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/charmbracelet/glash/internal/db"
-	"github.com/charmbracelet/glash/internal/event"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/db"
+	"glash/internal/event"
+	"glash/internal/pubsub"
 	"github.com/google/uuid"
 	"github.com/zeebo/xxh3"
 )

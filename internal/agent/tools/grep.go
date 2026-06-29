@@ -20,9 +20,9 @@ import (
 	"time"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/fsext"
+	"glash/internal/config"
+	"glash/internal/csync"
+	"glash/internal/fsext"
 )
 
 // regexCache provides thread-safe caching of compiled regex patterns

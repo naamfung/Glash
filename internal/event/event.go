@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/version"
+	"glash/internal/version"
 	"github.com/posthog/posthog-go"
 )
 

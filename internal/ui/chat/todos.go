@@ -6,10 +6,10 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/agent/tools"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/session"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/agent/tools"
+	"glash/internal/message"
+	"glash/internal/session"
+	"glash/internal/ui/styles"
 	"github.com/charmbracelet/x/ansi"
 )
 

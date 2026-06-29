@@ -15,7 +15,7 @@ import (
 	"sync"
 
 	"github.com/charlievieth/fastwalk"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/pubsub"
 	"gopkg.in/yaml.v3"
 )
 

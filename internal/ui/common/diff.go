@@ -2,8 +2,8 @@ package common
 
 import (
 	"github.com/alecthomas/chroma/v2"
-	"github.com/charmbracelet/glash/internal/ui/diffview"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/ui/diffview"
+	"glash/internal/ui/styles"
 )
 
 // DiffFormatter returns a diff formatter with the given styles that can be

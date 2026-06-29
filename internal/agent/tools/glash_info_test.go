@@ -9,11 +9,11 @@ import (
 	"time"
 
 	"charm.land/catwalk/pkg/catwalk"
-	"github.com/charmbracelet/glash/internal/agent/tools/mcp"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/lsp"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/agent/tools/mcp"
+	"glash/internal/config"
+	"glash/internal/csync"
+	"glash/internal/lsp"
+	"glash/internal/skills"
 	"github.com/stretchr/testify/require"
 )
 

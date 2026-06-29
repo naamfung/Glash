@@ -10,9 +10,9 @@ import (
 	"charm.land/bubbles/v2/key"
 	tea "charm.land/bubbletea/v2"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/agent/tools/mcp"
-	"github.com/charmbracelet/glash/internal/fsext"
-	"github.com/charmbracelet/glash/internal/ui/list"
+	"glash/internal/agent/tools/mcp"
+	"glash/internal/fsext"
+	"glash/internal/ui/list"
 	"github.com/charmbracelet/x/ansi"
 	"github.com/charmbracelet/x/exp/ordered"
 )

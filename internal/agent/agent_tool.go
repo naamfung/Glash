@@ -7,9 +7,9 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/charmbracelet/glash/internal/agent/prompt"
-	"github.com/charmbracelet/glash/internal/agent/tools"
-	"github.com/charmbracelet/glash/internal/config"
+	"glash/internal/agent/prompt"
+	"glash/internal/agent/tools"
+	"glash/internal/config"
 )
 
 //go:embed templates/agent_tool.md

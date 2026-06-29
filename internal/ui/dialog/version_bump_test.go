@@ -4,9 +4,9 @@ import (
 	"testing"
 
 	"charm.land/catwalk/pkg/catwalk"
-	"github.com/charmbracelet/glash/internal/session"
-	"github.com/charmbracelet/glash/internal/ui/list"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/session"
+	"glash/internal/ui/list"
+	"glash/internal/ui/styles"
 	"github.com/sahilm/fuzzy"
 	"github.com/stretchr/testify/require"
 )

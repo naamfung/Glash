@@ -6,8 +6,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/charmbracelet/glash/internal/home"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/home"
+	"glash/internal/pubsub"
 )
 
 // Manager owns per-workspace skill discovery state: the latest discovery

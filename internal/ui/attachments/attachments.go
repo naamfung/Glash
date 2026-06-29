@@ -10,7 +10,7 @@ import (
 	"charm.land/bubbles/v2/key"
 	tea "charm.land/bubbletea/v2"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/message"
+	"glash/internal/message"
 	"github.com/charmbracelet/x/ansi"
 )
 

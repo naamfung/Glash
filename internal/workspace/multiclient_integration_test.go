@@ -8,12 +8,12 @@ import (
 	"time"
 
 	tea "charm.land/bubbletea/v2"
-	"github.com/charmbracelet/glash/internal/client"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/server"
-	"github.com/charmbracelet/glash/internal/workspace"
+	"glash/internal/client"
+	"glash/internal/config"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
+	"glash/internal/server"
+	"glash/internal/workspace"
 	"github.com/stretchr/testify/require"
 )
 

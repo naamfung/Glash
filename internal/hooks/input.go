@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/shell"
+	"glash/internal/shell"
 	"github.com/tidwall/gjson"
 )
 

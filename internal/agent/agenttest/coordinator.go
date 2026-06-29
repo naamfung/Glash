@@ -10,11 +10,11 @@ import (
 
 	"charm.land/catwalk/pkg/catwalk"
 	"charm.land/fantasy/providers/openaicompat"
-	"github.com/charmbracelet/glash/internal/agent"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/session"
+	"glash/internal/agent"
+	"glash/internal/config"
+	"glash/internal/message"
+	"glash/internal/permission"
+	"glash/internal/session"
 )
 
 // NewCoordinator builds a real agent.Coordinator through the production

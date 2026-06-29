@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/message"
+	"glash/internal/ui/styles"
 )
 
 // MCPToolMessageItem is a message item that represents a MCP tool call.

@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/agent/notify"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/agent/notify"
+	"glash/internal/pubsub"
 	"github.com/stretchr/testify/require"
 )
 

@@ -9,7 +9,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/csync"
+	"glash/internal/csync"
 )
 
 const (

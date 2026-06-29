@@ -8,10 +8,10 @@ import (
 	"strings"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/agent/tools/mcp"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/lsp"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/agent/tools/mcp"
+	"glash/internal/config"
+	"glash/internal/lsp"
+	"glash/internal/skills"
 )
 
 const GlashInfoToolName = "glash_info"

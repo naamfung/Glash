@@ -14,9 +14,9 @@ import (
 	"charm.land/bubbles/v2/key"
 	tea "charm.land/bubbletea/v2"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/home"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	fimage "github.com/charmbracelet/glash/internal/ui/image"
+	"glash/internal/home"
+	"glash/internal/ui/common"
+	fimage "glash/internal/ui/image"
 	uv "github.com/charmbracelet/ultraviolet"
 )
 

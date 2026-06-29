@@ -6,8 +6,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/ui/list"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/ui/list"
+	"glash/internal/ui/styles"
 	"github.com/sahilm/fuzzy"
 )
 

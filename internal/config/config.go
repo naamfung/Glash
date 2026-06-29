@@ -13,9 +13,9 @@ import (
 	"time"
 
 	"charm.land/catwalk/pkg/catwalk"
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/oauth"
-	"github.com/charmbracelet/glash/internal/oauth/copilot"
+	"glash/internal/csync"
+	"glash/internal/oauth"
+	"glash/internal/oauth/copilot"
 	"github.com/invopop/jsonschema"
 )
 

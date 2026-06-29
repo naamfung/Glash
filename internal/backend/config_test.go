@@ -6,9 +6,9 @@ import (
 	"time"
 
 	tea "charm.land/bubbletea/v2"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/config"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 )

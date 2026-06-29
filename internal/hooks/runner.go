@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/shell"
+	"glash/internal/config"
+	"glash/internal/shell"
 )
 
 // abandonGrace is how long runOne waits after ctx cancellation for the

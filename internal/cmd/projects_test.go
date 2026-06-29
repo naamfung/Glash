@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/projects"
+	"glash/internal/projects"
 	"github.com/stretchr/testify/require"
 )
 

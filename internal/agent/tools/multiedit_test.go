@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/history"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/history"
+	"glash/internal/permission"
+	"glash/internal/pubsub"
 	"github.com/stretchr/testify/require"
 )
 

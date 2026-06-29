@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/oauth"
+	"glash/internal/oauth"
 )
 
 const (

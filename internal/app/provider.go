@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/config"
+	"glash/internal/config"
 	xstrings "github.com/charmbracelet/x/exp/strings"
 )
 

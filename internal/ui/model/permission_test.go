@@ -3,8 +3,8 @@ package model
 import (
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/ui/dialog"
+	"glash/internal/permission"
+	"glash/internal/ui/dialog"
 	"github.com/stretchr/testify/require"
 )
 

@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/session"
+	"glash/internal/pubsub"
+	"glash/internal/session"
 	"github.com/stretchr/testify/require"
 )
 

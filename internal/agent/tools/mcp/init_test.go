@@ -6,8 +6,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/env"
+	"glash/internal/config"
+	"glash/internal/env"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/goleak"

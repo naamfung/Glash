@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/ui/styles"
 	"github.com/charmbracelet/x/ansi"
 )
 

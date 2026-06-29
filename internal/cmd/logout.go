@@ -8,8 +8,8 @@ import (
 	"os/signal"
 
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/client"
-	"github.com/charmbracelet/glash/internal/config"
+	"glash/internal/client"
+	"glash/internal/config"
 	"github.com/charmbracelet/x/ansi"
 	"github.com/spf13/cobra"
 )

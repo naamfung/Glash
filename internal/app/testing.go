@@ -5,9 +5,9 @@ import (
 	"sync"
 
 	tea "charm.land/bubbletea/v2"
-	"github.com/charmbracelet/glash/internal/agent/notify"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/agent/notify"
+	"glash/internal/permission"
+	"glash/internal/pubsub"
 )
 
 // NewForTest constructs a minimal [App] suitable for in-process tests

@@ -6,8 +6,8 @@ import (
 
 	"charm.land/glamour/v2"
 	"github.com/alecthomas/chroma/v2/formatters"
-	"github.com/charmbracelet/glash/internal/ui/styles"
-	"github.com/charmbracelet/glash/internal/ui/xchroma"
+	"glash/internal/ui/styles"
+	"glash/internal/ui/xchroma"
 )
 
 const formatterName = "glash"

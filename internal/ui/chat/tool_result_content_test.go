@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/ui/styles"
 )
 
 func TestHumanizedToolName(t *testing.T) {

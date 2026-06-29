@@ -17,11 +17,11 @@ import (
 	"unicode/utf8"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/filepathext"
-	"github.com/charmbracelet/glash/internal/filetracker"
-	"github.com/charmbracelet/glash/internal/lsp"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/filepathext"
+	"glash/internal/filetracker"
+	"glash/internal/lsp"
+	"glash/internal/permission"
+	"glash/internal/skills"
 )
 
 //go:embed view.md.tpl

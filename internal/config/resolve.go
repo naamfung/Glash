@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/env"
-	"github.com/charmbracelet/glash/internal/shell"
+	"glash/internal/env"
+	"glash/internal/shell"
 )
 
 // resolveTimeout bounds how long a single ResolveValue call may spend

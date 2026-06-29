@@ -10,7 +10,7 @@ import (
 	"sync"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/lsp"
+	"glash/internal/lsp"
 )
 
 const LSPRestartToolName = "lsp_restart"

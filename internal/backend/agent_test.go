@@ -7,10 +7,10 @@ import (
 	"time"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/agent"
-	"github.com/charmbracelet/glash/internal/app"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/proto"
+	"glash/internal/agent"
+	"glash/internal/app"
+	"glash/internal/message"
+	"glash/internal/proto"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 )

@@ -9,11 +9,11 @@ import (
 	"charm.land/bubbles/v2/spinner"
 	"charm.land/bubbles/v2/textinput"
 	tea "charm.land/bubbletea/v2"
-	"github.com/charmbracelet/glash/internal/commands"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/list"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/commands"
+	"glash/internal/config"
+	"glash/internal/ui/common"
+	"glash/internal/ui/list"
+	"glash/internal/ui/styles"
 	uv "github.com/charmbracelet/ultraviolet"
 )
 

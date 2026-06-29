@@ -3,10 +3,10 @@ package model
 import (
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/skills"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	uistyles "github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/config"
+	"glash/internal/skills"
+	"glash/internal/ui/common"
+	uistyles "glash/internal/ui/styles"
 	"github.com/stretchr/testify/require"
 )
 

@@ -3,10 +3,10 @@ package dialog
 import (
 	"charm.land/catwalk/pkg/catwalk"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/list"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/config"
+	"glash/internal/ui/common"
+	"glash/internal/ui/list"
+	"glash/internal/ui/styles"
 	"github.com/charmbracelet/x/ansi"
 	"github.com/sahilm/fuzzy"
 )

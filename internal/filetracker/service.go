@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/db"
+	"glash/internal/db"
 )
 
 // Service defines the interface for tracking file reads in sessions.

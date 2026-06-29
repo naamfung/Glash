@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"charm.land/catwalk/pkg/catwalk"
-	"github.com/charmbracelet/glash/internal/message"
+	"glash/internal/message"
 )
 
 // CreateMessageParams represents parameters for creating a message.

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/lock"
+	"glash/internal/lock"
 	"github.com/stretchr/testify/require"
 )
 

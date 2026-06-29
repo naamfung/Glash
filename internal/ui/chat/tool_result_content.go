@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/diffdetect"
-	"github.com/charmbracelet/glash/internal/stringext"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/diffdetect"
+	"glash/internal/stringext"
+	"glash/internal/ui/styles"
 )
 
 type toolResultContentWidths struct {

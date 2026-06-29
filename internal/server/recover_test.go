@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/proto"
+	"glash/internal/proto"
 	"github.com/stretchr/testify/require"
 )
 

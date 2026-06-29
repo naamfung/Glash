@@ -8,12 +8,12 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/client"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/client"
+	"glash/internal/message"
+	"glash/internal/permission"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
+	"glash/internal/skills"
 	"github.com/stretchr/testify/require"
 )
 

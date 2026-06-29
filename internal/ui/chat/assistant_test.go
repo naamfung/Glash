@@ -3,8 +3,8 @@ package chat
 import (
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/message"
+	"glash/internal/ui/styles"
 	"github.com/charmbracelet/x/ansi"
 	"github.com/stretchr/testify/require"
 )

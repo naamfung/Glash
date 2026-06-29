@@ -14,8 +14,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/proto"
+	"glash/internal/csync"
+	"glash/internal/proto"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 )

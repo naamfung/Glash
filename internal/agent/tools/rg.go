@@ -9,7 +9,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/log"
+	"glash/internal/log"
 )
 
 var getRg = sync.OnceValue(func() string {

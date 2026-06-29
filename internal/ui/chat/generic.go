@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/message"
+	"glash/internal/ui/styles"
 )
 
 // GenericToolMessageItem is a message item that represents an unknown tool call.

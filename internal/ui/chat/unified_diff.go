@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/diffdetect"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/diffdetect"
+	"glash/internal/ui/common"
+	"glash/internal/ui/styles"
 )
 
 type parsedDiffFile struct {

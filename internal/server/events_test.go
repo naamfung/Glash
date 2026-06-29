@@ -5,11 +5,11 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/agent/notify"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/agent/notify"
+	"glash/internal/message"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
+	"glash/internal/skills"
 	"github.com/stretchr/testify/require"
 )
 

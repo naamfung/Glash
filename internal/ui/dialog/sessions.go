@@ -9,10 +9,10 @@ import (
 	"charm.land/bubbles/v2/textinput"
 	tea "charm.land/bubbletea/v2"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/session"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/list"
-	"github.com/charmbracelet/glash/internal/ui/util"
+	"glash/internal/session"
+	"glash/internal/ui/common"
+	"glash/internal/ui/list"
+	"glash/internal/ui/util"
 	uv "github.com/charmbracelet/ultraviolet"
 )
 

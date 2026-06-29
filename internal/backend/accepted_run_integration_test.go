@@ -6,12 +6,12 @@ import (
 	"time"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/agent"
-	"github.com/charmbracelet/glash/internal/agent/agenttest"
-	"github.com/charmbracelet/glash/internal/db"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/session"
+	"glash/internal/agent"
+	"glash/internal/agent/agenttest"
+	"glash/internal/db"
+	"glash/internal/message"
+	"glash/internal/proto"
+	"glash/internal/session"
 	"github.com/stretchr/testify/require"
 )
 

@@ -6,8 +6,8 @@ import (
 	"iter"
 	"log/slog"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/csync"
+	"glash/internal/config"
+	"glash/internal/csync"
 	"github.com/modelcontextprotocol/go-sdk/jsonrpc"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )

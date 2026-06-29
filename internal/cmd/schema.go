@@ -5,9 +5,9 @@ import (
 	"fmt"
 
 	"charm.land/catwalk/pkg/catwalk"
-	"github.com/charmbracelet/glash/internal/agent/hyper"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/discover"
+	"glash/internal/agent/hyper"
+	"glash/internal/config"
+	"glash/internal/discover"
 	"github.com/invopop/jsonschema"
 	"github.com/spf13/cobra"
 )

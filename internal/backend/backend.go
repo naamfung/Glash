@@ -13,14 +13,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/app"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/db"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/skills"
-	"github.com/charmbracelet/glash/internal/ui/util"
-	"github.com/charmbracelet/glash/internal/version"
+	"glash/internal/app"
+	"glash/internal/config"
+	"glash/internal/csync"
+	"glash/internal/db"
+	"glash/internal/proto"
+	"glash/internal/skills"
+	"glash/internal/ui/util"
+	"glash/internal/version"
 	"github.com/google/uuid"
 )
 

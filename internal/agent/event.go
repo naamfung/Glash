@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/event"
+	"glash/internal/event"
 )
 
 func (a *sessionAgent) eventPromptSent(sessionID string) {

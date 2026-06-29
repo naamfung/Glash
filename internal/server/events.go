@@ -6,17 +6,17 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/charmbracelet/glash/internal/agent/notify"
-	"github.com/charmbracelet/glash/internal/agent/tools/mcp"
-	"github.com/charmbracelet/glash/internal/app"
-	"github.com/charmbracelet/glash/internal/backend"
-	"github.com/charmbracelet/glash/internal/history"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/session"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/agent/notify"
+	"glash/internal/agent/tools/mcp"
+	"glash/internal/app"
+	"glash/internal/backend"
+	"glash/internal/history"
+	"glash/internal/message"
+	"glash/internal/permission"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
+	"glash/internal/session"
+	"glash/internal/skills"
 )
 
 // wrapEvent converts a raw tea.Msg (a pubsub.Event[T] from the app

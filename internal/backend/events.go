@@ -5,10 +5,10 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	mcptools "github.com/charmbracelet/glash/internal/agent/tools/mcp"
-	"github.com/charmbracelet/glash/internal/app"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	mcptools "glash/internal/agent/tools/mcp"
+	"glash/internal/app"
+	"glash/internal/config"
+	"glash/internal/pubsub"
 )
 
 // SubscribeEvents returns a per-caller event channel for a workspace.

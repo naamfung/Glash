@@ -11,9 +11,9 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/charmbracelet/glash/internal/agent/prompt"
-	"github.com/charmbracelet/glash/internal/agent/tools"
-	"github.com/charmbracelet/glash/internal/permission"
+	"glash/internal/agent/prompt"
+	"glash/internal/agent/tools"
+	"glash/internal/permission"
 )
 
 //go:embed templates/agentic_fetch.md

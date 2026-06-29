@@ -5,13 +5,13 @@ import (
 	"errors"
 	"os"
 
-	"github.com/charmbracelet/glash/internal/agent"
-	"github.com/charmbracelet/glash/internal/agent/notify"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/shell"
+	"glash/internal/agent"
+	"glash/internal/agent/notify"
+	"glash/internal/config"
+	"glash/internal/message"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
+	"glash/internal/shell"
 )
 
 // SendMessage validates and accepts a prompt for the workspace's agent,

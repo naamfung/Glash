@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/oauth"
-	"github.com/charmbracelet/glash/internal/proto"
+	"glash/internal/config"
+	"glash/internal/oauth"
+	"glash/internal/proto"
 )
 
 // SetConfigField sets a config key/value pair on the server.

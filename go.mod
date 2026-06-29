@@ -1,4 +1,4 @@
-module github.com/charmbracelet/glash
+module glash
 
 go 1.26.4
 

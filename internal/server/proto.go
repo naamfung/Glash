@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/charmbracelet/glash/internal/backend"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/session"
+	"glash/internal/backend"
+	"glash/internal/proto"
+	"glash/internal/session"
 	"github.com/google/uuid"
 )
 

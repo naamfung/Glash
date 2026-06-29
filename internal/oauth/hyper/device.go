@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/agent/hyper"
-	"github.com/charmbracelet/glash/internal/event"
-	"github.com/charmbracelet/glash/internal/oauth"
+	"glash/internal/agent/hyper"
+	"glash/internal/event"
+	"glash/internal/oauth"
 )
 
 // DeviceAuthResponse contains the response from the device authorization endpoint.

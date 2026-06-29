@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/db"
-	"github.com/charmbracelet/glash/internal/event"
+	"glash/internal/config"
+	"glash/internal/db"
+	"glash/internal/event"
 	"github.com/pkg/browser"
 	"github.com/spf13/cobra"
 )

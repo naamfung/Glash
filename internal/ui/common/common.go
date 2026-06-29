@@ -6,11 +6,11 @@ import (
 	"os"
 
 	tea "charm.land/bubbletea/v2"
-	"github.com/charmbracelet/glash/internal/clipboard"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/ui/styles"
-	"github.com/charmbracelet/glash/internal/ui/util"
-	"github.com/charmbracelet/glash/internal/workspace"
+	"glash/internal/clipboard"
+	"glash/internal/config"
+	"glash/internal/ui/styles"
+	"glash/internal/ui/util"
+	"glash/internal/workspace"
 	uv "github.com/charmbracelet/ultraviolet"
 )
 

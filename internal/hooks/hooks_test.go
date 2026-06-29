@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/shell"
+	"glash/internal/config"
+	"glash/internal/shell"
 	"github.com/stretchr/testify/require"
 )
 

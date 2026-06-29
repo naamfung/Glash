@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/oauth"
+	"glash/internal/config"
+	"glash/internal/oauth"
 )
 
 // ConfigSetRequest represents a request to set a config field.

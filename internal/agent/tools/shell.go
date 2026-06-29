@@ -13,10 +13,10 @@ import (
 	"time"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/fsext"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/shell"
+	"glash/internal/config"
+	"glash/internal/fsext"
+	"glash/internal/permission"
+	"glash/internal/shell"
 )
 
 type ShellParams struct {

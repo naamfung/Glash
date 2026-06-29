@@ -5,14 +5,14 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/charmbracelet/glash/internal/agent"
-	mcptools "github.com/charmbracelet/glash/internal/agent/tools/mcp"
-	"github.com/charmbracelet/glash/internal/commands"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/oauth"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/agent"
+	mcptools "glash/internal/agent/tools/mcp"
+	"glash/internal/commands"
+	"glash/internal/config"
+	"glash/internal/oauth"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
+	"glash/internal/skills"
 )
 
 // publishConfigChanged publishes a ConfigChanged event on the workspace's

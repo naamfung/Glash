@@ -3,8 +3,8 @@ package model
 import (
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/ui/chat"
+	"glash/internal/message"
+	"glash/internal/ui/chat"
 	"github.com/stretchr/testify/require"
 )
 

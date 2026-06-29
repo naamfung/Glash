@@ -1,8 +1,8 @@
 package backend
 
 import (
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/proto"
+	"glash/internal/permission"
+	"glash/internal/proto"
 )
 
 // GrantPermission grants, denies, or persistently grants a permission

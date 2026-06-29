@@ -3,7 +3,7 @@ package common
 import (
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/ui/styles"
 )
 
 // Scrollbar renders a vertical scrollbar based on content and viewport size.

@@ -11,14 +11,14 @@ import (
 	"time"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/diff"
-	"github.com/charmbracelet/glash/internal/filepathext"
-	"github.com/charmbracelet/glash/internal/filetracker"
-	"github.com/charmbracelet/glash/internal/fsext"
-	"github.com/charmbracelet/glash/internal/history"
+	"glash/internal/diff"
+	"glash/internal/filepathext"
+	"glash/internal/filetracker"
+	"glash/internal/fsext"
+	"glash/internal/history"
 
-	"github.com/charmbracelet/glash/internal/lsp"
-	"github.com/charmbracelet/glash/internal/permission"
+	"glash/internal/lsp"
+	"glash/internal/permission"
 )
 
 type EditParams struct {

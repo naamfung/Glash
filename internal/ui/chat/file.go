@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/agent/tools"
-	"github.com/charmbracelet/glash/internal/fsext"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/agent/tools"
+	"glash/internal/fsext"
+	"glash/internal/message"
+	"glash/internal/ui/styles"
 )
 
 // -----------------------------------------------------------------------------

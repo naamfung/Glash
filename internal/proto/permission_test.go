@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/agent/tools"
-	"github.com/charmbracelet/glash/internal/proto"
+	"glash/internal/agent/tools"
+	"glash/internal/proto"
 	"github.com/stretchr/testify/require"
 )
 

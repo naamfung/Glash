@@ -8,11 +8,11 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/ui/anim"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/list"
-	"github.com/charmbracelet/glash/internal/ui/styles"
+	"glash/internal/message"
+	"glash/internal/ui/anim"
+	"glash/internal/ui/common"
+	"glash/internal/ui/list"
+	"glash/internal/ui/styles"
 	"github.com/charmbracelet/x/ansi"
 )
 

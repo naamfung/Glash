@@ -10,7 +10,7 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"charm.land/glamour/v2/ansi"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/ui/diffview"
+	"glash/internal/ui/diffview"
 	"github.com/charmbracelet/x/exp/charmtone"
 )
 

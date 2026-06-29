@@ -10,9 +10,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/config"
-	glashlog "github.com/charmbracelet/glash/internal/log"
-	"github.com/charmbracelet/glash/internal/server"
+	"glash/internal/config"
+	glashlog "glash/internal/log"
+	"glash/internal/server"
 	"github.com/charmbracelet/x/term"
 	"github.com/spf13/cobra"
 )

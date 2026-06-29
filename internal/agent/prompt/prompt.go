@@ -12,11 +12,11 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/filepathext"
-	"github.com/charmbracelet/glash/internal/home"
-	"github.com/charmbracelet/glash/internal/shell"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/config"
+	"glash/internal/filepathext"
+	"glash/internal/home"
+	"glash/internal/shell"
+	"glash/internal/skills"
 )
 
 // Prompt represents a template-based prompt generator.

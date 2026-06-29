@@ -13,12 +13,12 @@ import (
 	"time"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/agent"
-	"github.com/charmbracelet/glash/internal/app"
-	"github.com/charmbracelet/glash/internal/backend"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/agent"
+	"glash/internal/app"
+	"glash/internal/backend"
+	"glash/internal/message"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 )

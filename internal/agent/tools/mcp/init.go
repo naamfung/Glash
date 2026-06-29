@@ -16,12 +16,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/csync"
-	"github.com/charmbracelet/glash/internal/home"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/version"
+	"glash/internal/config"
+	"glash/internal/csync"
+	"glash/internal/home"
+	"glash/internal/permission"
+	"glash/internal/pubsub"
+	"glash/internal/version"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 

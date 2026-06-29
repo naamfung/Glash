@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/ui/chat"
+	"glash/internal/ui/chat"
 	uv "github.com/charmbracelet/ultraviolet"
 	"github.com/charmbracelet/x/ansi"
 	"github.com/stretchr/testify/require"

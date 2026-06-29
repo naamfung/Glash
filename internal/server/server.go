@@ -13,9 +13,9 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/charmbracelet/glash/internal/backend"
-	"github.com/charmbracelet/glash/internal/config"
-	_ "github.com/charmbracelet/glash/internal/swagger"
+	"glash/internal/backend"
+	"glash/internal/config"
+	_ "glash/internal/swagger"
 	httpswagger "github.com/swaggo/http-swagger/v2"
 )
 

@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"charm.land/catwalk/pkg/catwalk"
-	"github.com/charmbracelet/glash/internal/config"
+	"glash/internal/config"
 	"github.com/stretchr/testify/require"
 )
 

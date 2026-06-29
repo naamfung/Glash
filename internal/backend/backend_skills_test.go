@@ -9,11 +9,11 @@ import (
 	"time"
 
 	tea "charm.land/bubbletea/v2"
-	"github.com/charmbracelet/glash/internal/backend"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/pubsub"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/backend"
+	"glash/internal/config"
+	"glash/internal/proto"
+	"glash/internal/pubsub"
+	"glash/internal/skills"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 )

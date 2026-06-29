@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/session"
+	"glash/internal/session"
 )
 
 //go:embed todos.md

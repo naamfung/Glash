@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/config"
+	"glash/internal/config"
 	"github.com/stretchr/testify/require"
 )
 

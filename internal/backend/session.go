@@ -3,9 +3,9 @@ package backend
 import (
 	"context"
 
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/session"
+	"glash/internal/message"
+	"glash/internal/proto"
+	"glash/internal/session"
 )
 
 // CreateSession creates a new session in the given workspace.

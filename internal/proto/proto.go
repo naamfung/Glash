@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"charm.land/catwalk/pkg/catwalk"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/lsp"
+	"glash/internal/config"
+	"glash/internal/lsp"
 )
 
 // Workspace represents a running app.App workspace with its associated

@@ -10,16 +10,16 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 	"charm.land/catwalk/pkg/catwalk"
-	mcptools "github.com/charmbracelet/glash/internal/agent/tools/mcp"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/history"
-	"github.com/charmbracelet/glash/internal/lsp"
-	"github.com/charmbracelet/glash/internal/message"
-	"github.com/charmbracelet/glash/internal/oauth"
-	"github.com/charmbracelet/glash/internal/permission"
-	"github.com/charmbracelet/glash/internal/proto"
-	"github.com/charmbracelet/glash/internal/session"
-	"github.com/charmbracelet/glash/internal/skills"
+	mcptools "glash/internal/agent/tools/mcp"
+	"glash/internal/config"
+	"glash/internal/history"
+	"glash/internal/lsp"
+	"glash/internal/message"
+	"glash/internal/oauth"
+	"glash/internal/permission"
+	"glash/internal/proto"
+	"glash/internal/session"
+	"glash/internal/skills"
 )
 
 // LSPClientInfo holds information about an LSP client's state. This is

@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/hooks"
+	"glash/internal/config"
+	"glash/internal/hooks"
 	"github.com/stretchr/testify/require"
 )
 

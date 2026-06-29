@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/db"
-	"github.com/charmbracelet/glash/internal/pubsub"
+	"glash/internal/db"
+	"glash/internal/pubsub"
 	"github.com/google/uuid"
 )
 

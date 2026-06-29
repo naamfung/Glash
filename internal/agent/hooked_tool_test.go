@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"charm.land/fantasy"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/hooks"
-	"github.com/charmbracelet/glash/internal/permission"
+	"glash/internal/config"
+	"glash/internal/hooks"
+	"glash/internal/permission"
 	"github.com/stretchr/testify/require"
 )
 

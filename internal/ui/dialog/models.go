@@ -11,9 +11,9 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"charm.land/catwalk/pkg/catwalk"
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/ui/common"
-	"github.com/charmbracelet/glash/internal/ui/util"
+	"glash/internal/config"
+	"glash/internal/ui/common"
+	"glash/internal/ui/util"
 	uv "github.com/charmbracelet/ultraviolet"
 )
 

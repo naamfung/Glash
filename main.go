@@ -16,8 +16,8 @@ import (
 	_ "net/http/pprof"
 	"os"
 
-	"github.com/charmbracelet/glash/internal/cmd"
-	_ "github.com/charmbracelet/glash/internal/dns"
+	"glash/internal/cmd"
+	_ "glash/internal/dns"
 	_ "github.com/joho/godotenv/autoload"
 )
 

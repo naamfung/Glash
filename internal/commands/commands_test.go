@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/skills"
 	"github.com/stretchr/testify/require"
 )
 

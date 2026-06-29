@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/config"
+	"glash/internal/config"
 )
 
 const projectsFileName = "projects.json"

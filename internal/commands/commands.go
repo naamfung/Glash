@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/charmbracelet/glash/internal/agent/tools/mcp"
-	"github.com/charmbracelet/glash/internal/config"
-	"github.com/charmbracelet/glash/internal/home"
-	"github.com/charmbracelet/glash/internal/skills"
+	"glash/internal/agent/tools/mcp"
+	"glash/internal/config"
+	"glash/internal/home"
+	"glash/internal/skills"
 )
 
 var namedArgPattern = regexp.MustCompile(`\$([A-Z][A-Z0-9_]*)`)
