@@ -184,27 +184,27 @@ func TestCoderAgent(t *testing.T) {
 				msgs, err := env.messages.List(t.Context(), session.ID)
 				require.NoError(t, err)
 
-				foundBash := false
-				var bashTCID string
+				foundShell := false
+				var shellTCID string
 
 				for _, msg := range msgs {
 					if msg.Role == message.Assistant {
 						for _, tc := range msg.ToolCalls() {
 							if tc.Name == tools.ShellToolName {
-								bashTCID = tc.ID
+								shellTCID = tc.ID
 							}
 						}
 					}
 					if msg.Role == message.Tool {
 						for _, tr := range msg.ToolResults() {
-							if tr.ToolCallID == bashTCID {
-								foundBash = true
+							if tr.ToolCallID == shellTCID {
+								foundShell = true
 							}
 						}
 					}
 				}
 
-				require.True(t, foundBash, "Expected to find a bash operation")
+				require.True(t, foundShell, "Expected to find a shell operation")
 
 				testFilePath := filepath.Join(env.workingDir, "test.txt")
 				content, err := os.ReadFile(testFilePath)

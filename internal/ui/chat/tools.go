@@ -147,7 +147,7 @@ type baseToolMessageItem struct {
 	messageID    string
 	status       ToolStatus
 	// we use this so we can efficiently cache
-	// tools that have a capped width (e.x bash.. and others)
+	// tools that have a capped width (e.x shell.. and others)
 	hasCappedWidth bool
 	// isCompact indicates this tool should render in compact mode.
 	isCompact bool

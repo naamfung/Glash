@@ -11,23 +11,23 @@ func TestTracker_MarkLoadedAndIsLoaded(t *testing.T) {
 
 	activeSkills := []*Skill{
 		{Name: "go-doc"},
-		{Name: "bash"},
+		{Name: "shell"},
 	}
 	tracker := NewTracker(activeSkills)
 
 	// Initially not loaded.
 	require.False(t, tracker.IsLoaded("go-doc"))
-	require.False(t, tracker.IsLoaded("bash"))
+	require.False(t, tracker.IsLoaded("shell"))
 
 	// Mark as loaded.
 	tracker.MarkLoaded("go-doc")
 	require.True(t, tracker.IsLoaded("go-doc"))
-	require.False(t, tracker.IsLoaded("bash"))
+	require.False(t, tracker.IsLoaded("shell"))
 
 	// Mark another.
-	tracker.MarkLoaded("bash")
+	tracker.MarkLoaded("shell")
 	require.True(t, tracker.IsLoaded("go-doc"))
-	require.True(t, tracker.IsLoaded("bash"))
+	require.True(t, tracker.IsLoaded("shell"))
 }
 
 func TestTracker_NonActiveSkillCannotBeMarkedLoaded(t *testing.T) {
@@ -39,8 +39,8 @@ func TestTracker_NonActiveSkillCannotBeMarkedLoaded(t *testing.T) {
 	tracker := NewTracker(activeSkills)
 
 	// Cannot mark non-active skill as loaded.
-	tracker.MarkLoaded("bash")
-	require.False(t, tracker.IsLoaded("bash"))
+	tracker.MarkLoaded("shell")
+	require.False(t, tracker.IsLoaded("shell"))
 
 	// Can mark active skill as loaded.
 	tracker.MarkLoaded("go-doc")
@@ -83,17 +83,17 @@ func TestTracker_BuiltinSkillTracking(t *testing.T) {
 func TestTracker_OverriddenBuiltinNotTracked(t *testing.T) {
 	t.Parallel()
 
-	// Simulate scenario where builtin "bash" is overridden by user "bash".
-	// After dedup, only user "bash" is active.
+	// Simulate scenario where builtin "shell" is overridden by user "shell".
+	// After dedup, only user "shell" is active.
 	activeSkills := []*Skill{
-		{Name: "bash", Description: "User bash override", Builtin: false},
+		{Name: "shell", Description: "User shell override", Builtin: false},
 	}
 	tracker := NewTracker(activeSkills)
 
-	// Trying to mark the builtin "bash" as loaded should not work
+	// Trying to mark the builtin "shell" as loaded should not work
 	// because the active skill is the user override.
-	tracker.MarkLoaded("bash")
-	require.True(t, tracker.IsLoaded("bash"))
+	tracker.MarkLoaded("shell")
+	require.True(t, tracker.IsLoaded("shell"))
 
 	// But if we somehow tried to mark a different builtin that's not active,
 	// it wouldn't get marked.

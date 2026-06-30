@@ -300,17 +300,17 @@ After significant changes:
 - Never use `curl` through the shell tool it is not allowed use the fetch tool instead.
 - Only use the tools you know exist.
 
-<bash_commands>
+<shell_commands>
 **CRITICAL**: The `description` parameter is REQUIRED for all shell tool calls. Always provide it.
 
-When running non-trivial bash commands (especially those that modify the system):
+When running non-trivial shell commands (especially those that modify the system):
 - Briefly explain what the command does and why you're running it
 - This ensures the user understands potentially dangerous operations
 - Simple read-only commands (ls, cat, etc.) don't need explanation
 - Use `&` for background processes that won't stop on their own (e.g., `node server.js &`)
 - Avoid interactive commands - use non-interactive versions (e.g., `npm init -y` not `npm init`)
 - Combine related commands to save time (e.g., `git status && git diff HEAD && git log -n 3`)
-</bash_commands>
+</shell_commands>
 </tool_usage>
 
 <proactiveness>

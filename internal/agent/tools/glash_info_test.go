@@ -169,12 +169,12 @@ func TestGlashInfo_AllowedTools(t *testing.T) {
 
 	cfg := config.NewTestStore(&config.Config{
 		Providers:   csync.NewMap[string, config.ProviderConfig](),
-		Permissions: &config.Permissions{AllowedTools: []string{"edit:write", "bash"}},
+		Permissions: &config.Permissions{AllowedTools: []string{"edit:write", "shell"}},
 	})
 
 	output := buildGlashInfo(cfg, nil, nil, nil, nil)
 	require.Contains(t, output, "[permissions]")
-	require.Contains(t, output, "allowed_tools = bash, edit:write")
+	require.Contains(t, output, "allowed_tools = shell, edit:write")
 }
 
 func TestGlashInfo_DisabledTools(t *testing.T) {
@@ -388,13 +388,13 @@ func TestGlashInfo_Skills_MixedLoadedUnloaded(t *testing.T) {
 
 	allSkills := []*skills.Skill{
 		{Name: "go-doc", Builtin: false},
-		{Name: "bash", Builtin: false},
+		{Name: "shell", Builtin: false},
 		{Name: "glash-config", Builtin: true},
 	}
 	activeSkills := allSkills
 
 	tracker := skills.NewTracker(activeSkills)
-	tracker.MarkLoaded("bash")
+	tracker.MarkLoaded("shell")
 	tracker.MarkLoaded("glash-config")
 
 	cfg := config.NewTestStore(&config.Config{
@@ -402,7 +402,7 @@ func TestGlashInfo_Skills_MixedLoadedUnloaded(t *testing.T) {
 	})
 	output := buildGlashInfo(cfg, nil, allSkills, activeSkills, tracker)
 	require.Contains(t, output, "[skills]")
-	require.Contains(t, output, "bash = user, loaded")
+	require.Contains(t, output, "shell = user, loaded")
 	require.Contains(t, output, "glash-config = builtin, loaded")
 	require.Contains(t, output, "go-doc = user, unloaded")
 }
@@ -411,12 +411,12 @@ func TestGlashInfo_Skills_DisabledSkills(t *testing.T) {
 	t.Parallel()
 
 	allSkills := []*skills.Skill{
-		{Name: "bash", Builtin: false},
+		{Name: "shell", Builtin: false},
 		{Name: "glash-config", Builtin: true},
 		{Name: "image-convert", Builtin: false},
 	}
 	activeSkills := []*skills.Skill{
-		{Name: "bash", Builtin: false},
+		{Name: "shell", Builtin: false},
 		{Name: "glash-config", Builtin: true},
 	}
 
@@ -428,7 +428,7 @@ func TestGlashInfo_Skills_DisabledSkills(t *testing.T) {
 	})
 	output := buildGlashInfo(cfg, nil, allSkills, activeSkills, tracker)
 	require.Contains(t, output, "[skills]")
-	require.Contains(t, output, "bash = user, unloaded")
+	require.Contains(t, output, "shell = user, unloaded")
 	require.Contains(t, output, "glash-config = builtin, unloaded")
 	require.Contains(t, output, "image-convert = user, disabled")
 }

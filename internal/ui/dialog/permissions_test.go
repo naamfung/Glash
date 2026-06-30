@@ -17,7 +17,7 @@ func newTestPermissions(t *testing.T) *Permissions {
 	perm := permission.PermissionRequest{
 		ID:         "perm-test",
 		ToolCallID: "tool-call-test",
-		ToolName:   "bash",
+		ToolName:   "shell",
 	}
 	return NewPermissions(com, perm)
 }

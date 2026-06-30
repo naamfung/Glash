@@ -1,7 +1,9 @@
 {
   "$schema": "schema.json",
   "lsp": {
-    "gopls": {
+    "go": {
+      "command": "gopls",
+      "filetypes": ["go", "gomod", "gowork", "gotmpl"],
       "options": {
         "gofumpt": true,
         "codelenses": {

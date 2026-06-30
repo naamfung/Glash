@@ -23,7 +23,7 @@ func TestHandlePermissionNotification_RemoteGrantClosesDialog(t *testing.T) {
 	perm := permission.PermissionRequest{
 		ID:         "perm-1",
 		ToolCallID: "tool-call-X",
-		ToolName:   "bash",
+		ToolName:   "shell",
 	}
 	u.dialog.OpenDialogWithGrace(dialog.NewPermissions(u.com, perm))
 	require.True(t, u.dialog.ContainsDialog(dialog.PermissionsID))

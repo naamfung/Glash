@@ -130,7 +130,7 @@ func TestBaseToolMessageItem_MutatorsBumpVersion(t *testing.T) {
 	t.Parallel()
 
 	sty := styles.CharmtonePantera()
-	tc := message.ToolCall{ID: "tc1", Name: "bash", Input: "{}", Finished: false}
+	tc := message.ToolCall{ID: "tc1", Name: "shell", Input: "{}", Finished: false}
 	item := NewToolMessageItem(&sty, "msg", tc, nil, false)
 
 	v := item.(versionedItem)
@@ -282,7 +282,7 @@ func TestAgentToolMessageItem_NestedToolMutatorsBumpVersion(t *testing.T) {
 	item := NewAgentToolMessageItem(&sty, parent, nil, false)
 
 	mkChild := func(id string) ToolMessageItem {
-		tc := message.ToolCall{ID: id, Name: "bash", Input: `{}`, Finished: false}
+		tc := message.ToolCall{ID: id, Name: "shell", Input: `{}`, Finished: false}
 		return NewToolMessageItem(&sty, "msg", tc, nil, false)
 	}
 
@@ -356,7 +356,7 @@ func TestAgentToolMessageItem_NestedChildInPlaceMutationBumpsParent(t *testing.T
 	parent := message.ToolCall{ID: "agent-parent", Name: "agent", Input: `{}`, Finished: false}
 	item := NewAgentToolMessageItem(&sty, parent, nil, false)
 
-	childTC := message.ToolCall{ID: "c1", Name: "bash", Input: `{}`, Finished: false}
+	childTC := message.ToolCall{ID: "c1", Name: "shell", Input: `{}`, Finished: false}
 	child := NewToolMessageItem(&sty, "msg", childTC, nil, false)
 	item.AddNestedTool(child)
 
@@ -426,7 +426,7 @@ func TestBaseToolMessageItem_AnimateBumpsVersion(t *testing.T) {
 	t.Parallel()
 
 	sty := styles.CharmtonePantera()
-	tc := message.ToolCall{ID: "tc-spin", Name: "bash", Input: "{}", Finished: false}
+	tc := message.ToolCall{ID: "tc-spin", Name: "shell", Input: "{}", Finished: false}
 	item := NewToolMessageItem(&sty, "msg", tc, nil, false)
 	v := item.(versionedItem)
 	a, ok := item.(Animatable)
@@ -474,7 +474,7 @@ func TestAgentToolMessageItem_AnimateBumpsVersion(t *testing.T) {
 	parentTC := message.ToolCall{ID: "agent-parent", Name: "agent", Input: `{}`, Finished: false}
 	parent := NewAgentToolMessageItem(&sty, parentTC, nil, false)
 
-	childTC := message.ToolCall{ID: "agent-child", Name: "bash", Input: `{}`, Finished: false}
+	childTC := message.ToolCall{ID: "agent-child", Name: "shell", Input: `{}`, Finished: false}
 	child := NewToolMessageItem(&sty, "msg", childTC, nil, false)
 	parent.AddNestedTool(child)
 
@@ -550,7 +550,7 @@ func TestBaseToolMessageItem_FinishedTransition(t *testing.T) {
 	t.Parallel()
 
 	sty := styles.CharmtonePantera()
-	tc := message.ToolCall{ID: "tc-fin", Name: "bash", Input: "{}", Finished: false}
+	tc := message.ToolCall{ID: "tc-fin", Name: "shell", Input: "{}", Finished: false}
 	item := NewToolMessageItem(&sty, "msg", tc, nil, false)
 	require.False(t, item.Finished(), "running tool must not be Finished()")
 
@@ -561,7 +561,7 @@ func TestBaseToolMessageItem_FinishedTransition(t *testing.T) {
 	require.True(t, item.Finished(), "finished tool with result must be Finished()")
 
 	// Canceled tool with no result is also Finished.
-	tcCanceled := message.ToolCall{ID: "tc-cancel", Name: "bash", Input: "{}", Finished: false}
+	tcCanceled := message.ToolCall{ID: "tc-cancel", Name: "shell", Input: "{}", Finished: false}
 	canceled := NewToolMessageItem(&sty, "msg", tcCanceled, nil, true)
 	require.True(t, canceled.Finished(), "canceled tool must be Finished()")
 }

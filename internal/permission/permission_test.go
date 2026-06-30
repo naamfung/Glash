@@ -20,36 +20,36 @@ func TestPermissionService_AllowedCommands(t *testing.T) {
 	}{
 		{
 			name:         "tool in allowlist",
-			allowedTools: []string{"bash", "view"},
-			toolName:     "bash",
+			allowedTools: []string{"shell", "view"},
+			toolName:     "shell",
 			action:       "execute",
 			expected:     true,
 		},
 		{
 			name:         "tool:action in allowlist",
-			allowedTools: []string{"bash:execute", "edit:create"},
-			toolName:     "bash",
+			allowedTools: []string{"shell:execute", "edit:create"},
+			toolName:     "shell",
 			action:       "execute",
 			expected:     true,
 		},
 		{
 			name:         "tool not in allowlist",
 			allowedTools: []string{"view", "ls"},
-			toolName:     "bash",
+			toolName:     "shell",
 			action:       "execute",
 			expected:     false,
 		},
 		{
 			name:         "tool:action not in allowlist",
-			allowedTools: []string{"bash:read", "edit:create"},
-			toolName:     "bash",
+			allowedTools: []string{"shell:read", "edit:create"},
+			toolName:     "shell",
 			action:       "execute",
 			expected:     false,
 		},
 		{
 			name:         "empty allowlist",
 			allowedTools: []string{},
-			toolName:     "bash",
+			toolName:     "shell",
 			action:       "execute",
 			expected:     false,
 		},
@@ -101,7 +101,7 @@ func TestPermissionService_SkipMode(t *testing.T) {
 
 	result, err := service.Request(t.Context(), CreatePermissionRequest{
 		SessionID:   "test-session",
-		ToolName:    "bash",
+		ToolName:    "shell",
 		Action:      "execute",
 		Description: "test command",
 		Path:        "/tmp",
@@ -125,7 +125,7 @@ func TestPermissionService_HookApproval(t *testing.T) {
 		granted, err := service.Request(ctx, CreatePermissionRequest{
 			SessionID:   "s1",
 			ToolCallID:  "call-42",
-			ToolName:    "bash",
+			ToolName:    "shell",
 			Action:      "execute",
 			Description: "hook-approved command",
 			Path:        "/tmp",
@@ -152,7 +152,7 @@ func TestPermissionService_HookApproval(t *testing.T) {
 			granted, err = service.Request(ctx, CreatePermissionRequest{
 				SessionID:   "s1",
 				ToolCallID:  "call-other",
-				ToolName:    "bash",
+				ToolName:    "shell",
 				Action:      "execute",
 				Description: "unrelated call",
 				Path:        "/tmp",

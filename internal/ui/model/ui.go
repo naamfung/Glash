@@ -10,6 +10,7 @@ import (
 	"log/slog"
 	"math/rand"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -1496,10 +1497,6 @@ func (m *UI) handleDialogMsg(msg tea.Msg) tea.Cmd {
 	switch msg := action.(type) {
 	// Generic dialog messages
 	case dialog.ActionClose:
-		if isOnboarding && m.dialog.ContainsDialog(dialog.ModelsID) {
-			break
-		}
-
 		if m.dialog.ContainsDialog(dialog.FilePickerID) {
 			defer fimage.ResetCache()
 		}
@@ -1531,6 +1528,36 @@ func (m *UI) handleDialogMsg(msg tea.Msg) tea.Cmd {
 		if cmd := m.openDialog(msg.DialogID); cmd != nil {
 			cmds = append(cmds, cmd)
 		}
+
+	// Model source select dialog messages.
+	case dialog.ActionSelectModelSource:
+		m.dialog.CloseDialog(dialog.ModelSourceSelectID)
+		if msg.Source == dialog.ModelSourceOnline {
+			// Open models dialog directly for online selection
+			if m.dialog.ContainsDialog(dialog.ModelsID) {
+				m.dialog.BringToFront(dialog.ModelsID)
+			} else {
+				isOnboarding := m.state == uiOnboarding
+				modelsDialog, err := dialog.NewModels(m.com, isOnboarding)
+				if err != nil {
+					cmds = append(cmds, util.ReportError(err))
+				} else {
+					m.dialog.OpenDialog(modelsDialog)
+				}
+			}
+		} else {
+			if cmd := m.openLocalServiceConfigDialog(); cmd != nil {
+				cmds = append(cmds, cmd)
+			}
+		}
+
+	// Local service config dialog messages.
+	case dialog.ActionAddLocalService:
+		cmd := m.addLocalService(msg)
+		if cmd != nil {
+			cmds = append(cmds, cmd)
+		}
+		m.dialog.CloseDialog(dialog.LocalServiceConfigID)
 
 	// Command dialog messages.
 	case dialog.ActionToggleYoloMode:
@@ -1831,6 +1858,67 @@ func (m *UI) fetchHyperCredits() tea.Cmd {
 		}
 		return creditsUpdatedMsg{credits: credits}
 	}
+}
+
+// addLocalService handles the action to add a local service provider.
+func (m *UI) addLocalService(msg dialog.ActionAddLocalService) tea.Cmd {
+	// Validate the local service type.
+	validTypes := map[string]bool{
+		"openai":   true,
+		"ollama":   true,
+		"litellm":  true,
+		"lmstudio": true,
+		"llamacpp": true,
+		"omlx":     true,
+	}
+	typeStr := string(msg.Type)
+	if !validTypes[typeStr] {
+		return util.ReportError(fmt.Errorf("unsupported local service type: %s", typeStr))
+	}
+
+	// Validate the base URL.
+	if msg.BaseURL == "" {
+		return util.ReportError(errors.New("base URL is required"))
+	}
+	if _, err := url.ParseRequestURI(msg.BaseURL); err != nil {
+		return util.ReportError(fmt.Errorf("invalid base URL: %s", msg.BaseURL))
+	}
+
+	// Generate provider ID and name.
+	providerID := fmt.Sprintf("local-%s", strings.ToLower(typeStr))
+	providerName := "Local " + strings.ToUpper(typeStr[:1]) + strings.ToLower(typeStr[1:])
+
+	// Build models list.
+	var models []catwalk.Model
+	if msg.Model != "" {
+		models = []catwalk.Model{
+			{
+				ID:   msg.Model,
+				Name: msg.Model,
+			},
+		}
+	}
+
+	// Save to config using SetConfigField for each field.
+	fields := map[string]any{
+		fmt.Sprintf("providers.%s.id", providerID):                 providerID,
+		fmt.Sprintf("providers.%s.name", providerID):               providerName,
+		fmt.Sprintf("providers.%s.base_url", providerID):           msg.BaseURL,
+		fmt.Sprintf("providers.%s.type", providerID):               typeStr,
+		fmt.Sprintf("providers.%s.disable", providerID):            false,
+		fmt.Sprintf("providers.%s.discover_models", providerID):     true,
+	}
+	if len(models) > 0 {
+		fields[fmt.Sprintf("providers.%s.models", providerID)] = models
+	}
+
+	for key, value := range fields {
+		if err := m.com.Workspace.SetConfigField(config.ScopeGlobal, key, value); err != nil {
+			return util.ReportError(fmt.Errorf("failed to add local service: %v", err))
+		}
+	}
+
+	return util.CmdHandler(util.NewInfoMsg(fmt.Sprintf("Added local service: %s (%s)", providerName, providerID)))
 }
 
 // handleSelectModel performs the model selection after any provider
@@ -3742,12 +3830,39 @@ func (m *UI) openModelsDialog() tea.Cmd {
 	}
 
 	isOnboarding := m.state == uiOnboarding
+	
+	// Check if config is configured
+	cfg := m.com.Config()
+	if isOnboarding && cfg != nil && !cfg.IsConfigured() {
+		if m.dialog.ContainsDialog(dialog.ModelSourceSelectID) {
+			m.dialog.BringToFront(dialog.ModelSourceSelectID)
+			return nil
+		}
+		modelSourceSelectDialog := dialog.NewModelSourceSelect(m.com)
+		m.dialog.OpenDialog(modelSourceSelectDialog)
+		return nil
+	}
+
 	modelsDialog, err := dialog.NewModels(m.com, isOnboarding)
 	if err != nil {
 		return util.ReportError(err)
 	}
 
 	m.dialog.OpenDialog(modelsDialog)
+
+	return nil
+}
+
+// openLocalServiceConfigDialog opens the local service config dialog.
+func (m *UI) openLocalServiceConfigDialog() tea.Cmd {
+	if m.dialog.ContainsDialog(dialog.LocalServiceConfigID) {
+		// Bring to front
+		m.dialog.BringToFront(dialog.LocalServiceConfigID)
+		return nil
+	}
+
+	localServiceConfigDialog := dialog.NewLocalServiceConfig(m.com)
+	m.dialog.OpenDialog(localServiceConfigDialog)
 
 	return nil
 }
@@ -4329,7 +4444,7 @@ func renderLogo(t *styles.Styles, compact, hyper bool, width int) string {
 		FieldColor:   t.Logo.FieldColor,
 		TitleColorA:  t.Logo.TitleColorA,
 		TitleColorB:  t.Logo.TitleColorB,
-		CharmColor:   t.Logo.CharmColor,
+		SuperColor:   t.Logo.SuperColor,
 		VersionColor: t.Logo.VersionColor,
 		Width:        width,
 		Hyper:        hyper,

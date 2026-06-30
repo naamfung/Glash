@@ -7,7 +7,7 @@ import (
 )
 
 var safeCommands = []string{
-	// Bash builtins and core utils
+	// Shell builtins and core utils
 	"cal",
 	"date",
 	"df",

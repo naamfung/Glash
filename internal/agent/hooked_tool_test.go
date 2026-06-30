@@ -102,11 +102,11 @@ func TestHookedTool_SilentDoesNotStampApproval(t *testing.T) {
 func TestHookedTool_DenySkipsInnerTool(t *testing.T) {
 	t.Parallel()
 
-	inner := &fakeTool{name: "bash"}
+	inner := &fakeTool{name: "shell"}
 	runner := newRunner(t, `echo "blocked" >&2; exit 2`)
 	tool := newHookedTool(inner, runner)
 
-	resp, err := tool.Run(t.Context(), fantasy.ToolCall{ID: "call-3", Name: "bash"})
+	resp, err := tool.Run(t.Context(), fantasy.ToolCall{ID: "call-3", Name: "shell"})
 	require.NoError(t, err)
 	require.False(t, inner.called, "denied call must not reach the inner tool")
 	require.True(t, resp.IsError)

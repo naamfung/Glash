@@ -26,7 +26,7 @@ accept snake_case (`PreToolUse`, `pretooluse`, `pre_tool_use` all work).
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "^bash$",              // regex against tool name (optional; omit to match all)
+        "matcher": "^shell$",              // regex against tool name (optional; omit to match all)
         "command": "./hooks/my-hook.sh",   // required: shell command to run
         "timeout": 10                     // optional: seconds, default 30
       }
@@ -52,11 +52,11 @@ the input/output contract is identical regardless of language.
 | Variable                     | Description                              |
 | ---------------------------- | ---------------------------------------- |
 | `GLASH_EVENT`                | Event name (e.g. `PreToolUse`)           |
-| `GLASH_TOOL_NAME`            | Tool being called (e.g. `bash`)          |
+| `GLASH_TOOL_NAME`            | Tool being called (e.g. `shell`)          |
 | `GLASH_SESSION_ID`           | Current session ID                       |
 | `GLASH_CWD`                  | Working directory                        |
 | `GLASH_PROJECT_DIR`          | Project root directory                   |
-| `GLASH_TOOL_INPUT_COMMAND`   | For `bash` calls: the shell command      |
+| `GLASH_TOOL_INPUT_COMMAND`   | For `shell` calls: the shell command      |
 | `GLASH_TOOL_INPUT_FILE_PATH` | For file tools: the target file path     |
 
 **JSON on stdin:**
@@ -66,7 +66,7 @@ the input/output contract is identical regardless of language.
   "event": "PreToolUse",
   "session_id": "313909e",
   "cwd": "/home/user/project",
-  "tool_name": "bash",
+  "tool_name": "shell",
   "tool_input": {"command": "rm -rf /"}
 }
 ```
@@ -135,7 +135,7 @@ if echo "$GLASH_TOOL_INPUT_COMMAND" | grep -qE 'rm\s+-(rf|fr)\s+/'; then
 fi
 ```
 
-Config: `{"matcher": "^bash$", "command": "./hooks/no-rm-rf.sh"}`
+Config: `{"matcher": "^shell$", "command": "./hooks/no-rm-rf.sh"}`
 
 ### Auto-approve read-only tools (inline, no script)
 

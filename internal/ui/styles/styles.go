@@ -72,7 +72,7 @@ type Styles struct {
 
 	// Header
 	Header struct {
-		Charm             lipgloss.Style // Style for "Charm™" label
+		Super             lipgloss.Style // Style for "Super™" label
 		Diagonals         lipgloss.Style // Style for diagonal separators (╱)
 		Percentage        lipgloss.Style // Style for context percentage
 		HypercreditIcon   lipgloss.Style // Style for Hypercredit count (◆ N)
@@ -156,9 +156,9 @@ type Styles struct {
 		FieldColor         color.Color
 		TitleColorA        color.Color
 		TitleColorB        color.Color
-		CharmColor         color.Color
+		SuperColor         color.Color
 		VersionColor       color.Color
-		SmallCharm         lipgloss.Style // "Charm™" label in SmallRender
+		SmallSuper         lipgloss.Style // "Super™" label in SmallRender
 		SmallDiagonals     lipgloss.Style // Diagonal line fill in SmallRender
 		GradCanvas         lipgloss.Style // Blank canvas for gradient painting
 		SmallGradFromColor color.Color    // Small "Glash" wordmark gradient start
@@ -329,11 +329,11 @@ type Styles struct {
 		NoteTag     lipgloss.Style // NOTE tag (yellow background)
 		NoteMessage lipgloss.Style // Note message text
 
-		// Job header styles (for bash jobs)
+		// Job header styles (for shell jobs)
 		JobIconPending lipgloss.Style // Pending job icon (green dark)
 		JobIconError   lipgloss.Style // Error job icon (red dark)
 		JobIconSuccess lipgloss.Style // Success job icon (green)
-		JobToolName    lipgloss.Style // Job tool name "Bash" (blue)
+		JobToolName    lipgloss.Style // Job tool name "Shell" (blue)
 		JobAction      lipgloss.Style // Action text (Start, Output, Kill)
 		JobPID         lipgloss.Style // PID text
 		JobDescription lipgloss.Style // Description text

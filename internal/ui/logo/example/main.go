@@ -23,7 +23,7 @@ func main() {
 		FieldColor:   s.Logo.FieldColor,
 		TitleColorA:  s.Logo.TitleColorA,
 		TitleColorB:  s.Logo.TitleColorB,
-		CharmColor:   s.Logo.CharmColor,
+		SuperColor:   s.Logo.SuperColor,
 		VersionColor: s.Logo.VersionColor,
 		Width:        w,
 		Unstable:     true,

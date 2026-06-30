@@ -55,9 +55,9 @@ a global hook (`~/.config/glash/glash.json`), use an absolute path instead.
     // PreToolUse is an event that fires before a tool is used.
     "PreToolUse": [
       {
-        // What tool do we want to hook into? In this case, Bash, because it
+        // What tool do we want to hook into? In this case, Shell, because it
         // runs the stuff we wanna block.
-        "matcher": "^bash$",
+        "matcher": "^shell$",
 
         // The path to our actual hook script.
         "command": "./no-haskell.sh",
@@ -72,7 +72,7 @@ Now, let's make our `no-haskell.sh` hook script.
 ```bash
 #!/usr/bin/env bash
 
-# Disallow ghc, cabal, and stack. Pipe the bash command output
+# Disallow ghc, cabal, and stack. Pipe the shell command output
 # ($GLASH_TOOL_INPUT_COMMAND) to grep and match on a regexp.
 if echo "$GLASH_TOOL_INPUT_COMMAND" | grep -qE '(^| )((ghc|cabal|stack)(\.exe)?)( |$)'; then
 
@@ -119,7 +119,7 @@ What this means in practice:
   "no opinion".
 - **Environment**: every hook sees `GLASH=1`, `AGENT=glash`, and
   `AI_AGENT=glash` on top of the `GLASH_*` hook-specific variables. These
-  three markers are guaranteed and match what the `bash` tool sets, so
+  three markers are guaranteed and match what the `shell` tool sets, so
   scripts that detect "am I being run by an AI agent?" behave the same in
   both contexts.
 - **Timeout behavior**: when a hook exceeds its timeout, Glash cancels the
@@ -140,7 +140,7 @@ and project-level, with project level hooks taking precedence.
     "PreToolUse": [
       {
         "name": "no-rm-rf", // friendly name shown in the TUI
-        "matcher": "bash", // regex tested against the tool name
+        "matcher": "shell", // regex tested against the tool name
         "command": "./hooks/my-hot-hook.sh", // the path to the hook
         "timeout": 10, // in seconds; default 30
       },
@@ -184,7 +184,7 @@ This hook fires before every tool call. Use it to block dangerous commands,
 enforce policies, rewrite tool input, inject context the model should see, log
 stuff, and so on.
 
-**Matched against**: the tool name (e.g. `bash`, `edit`, `write`,
+**Matched against**: the tool name (e.g. `shell`, `edit`, `write`,
 `mcp_github_create_pull_request`).
 
 > [!NOTE]
@@ -345,7 +345,7 @@ for the call.
 
 `updated_input` is a shallow-merge patch. Keys you include overwrite matching
 keys in `tool_input`; keys you don't include are preserved. If the model called
-`bash` with `{"command": "npm test", "timeout": 60000}` and your hook returns
+`shell` with `{"command": "npm test", "timeout": 60000}` and your hook returns
 `{"updated_input": {"command": "bun test"}}`, the tool runs with
 `{"command": "bun test", "timeout": 60000}` — the timeout isn't dropped. The
 merge is shallow: nested objects are replaced wholesale, not deep-merged.
@@ -417,7 +417,7 @@ Prevent the agent from running `rm -rf` in bash:
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "^bash$",
+        "matcher": "^shell$",
         "command": "./hooks/no-rm-rf.sh"
       }
     ]
@@ -459,12 +459,12 @@ returns `decision: "allow"`, which tells Glash to pre-approve the call:
 ```
 
 No script file needed — the command is inline. Every `view`/`ls`/`grep`/`glob`
-call now runs without prompting. Add the `bash` tool to this list at your own
+call now runs without prompting. Add the `shell` tool to this list at your own
 risk; consider a more targeted allowlist instead:
 
 ```bash
 #!/usr/bin/env bash
-# hooks/safe-bash.sh — auto-approve read-only bash commands.
+# hooks/safe-shell.sh — auto-approve read-only shell commands.
 
 case "$GLASH_TOOL_INPUT_COMMAND" in
   ls*|cat*|grep*|rg*|echo*|pwd*)
@@ -540,7 +540,7 @@ Hooks aren't limited to shell scripts: any executable works. Here's the same
 
 #### Lua
 
-`{"matcher": "^bash$", "command": "lua ./hooks/no-rm-rf.lua"}`
+`{"matcher": "^shell$", "command": "lua ./hooks/no-rm-rf.lua"}`
 
 ```lua
 local input = io.read("*a")
@@ -554,7 +554,7 @@ end
 
 #### JavaScript
 
-`{"matcher": "^bash$", "command": "node ./hooks/no-rm-rf.js"}`
+`{"matcher": "^shell$", "command": "node ./hooks/no-rm-rf.js"}`
 
 ```js
 let input = "";

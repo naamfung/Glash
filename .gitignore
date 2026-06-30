@@ -21,6 +21,7 @@ go.work.sum
 # IDE specific files
 .idea/
 .vscode/
+.glash/
 *.swp
 *.swo
 
@@ -46,6 +47,7 @@ Thumbs.db
 .direnv/
 
 **/.crush/**
+**/.glash/**
 
 /crush
 /tmp/

@@ -35,14 +35,14 @@ Glash runs selected string fields through an embedded bash-compatible
 shell at load time, so values can pull from env vars, files, or helper
 commands.
 
-Supported constructs (match the `bash` tool):
+Supported constructs (match the `shell` tool):
 
 - `$VAR` and `${VAR}`
 - `${VAR:-default}`, `${VAR:+alt}`, `${VAR:?message}`
 - `$(command)` with full quoting and nesting
 - Single- and double-quoted strings, escapes
 
-Default semantics match bash: an unset variable expands to an empty
+Default semantics match shell: an unset variable expands to an empty
 string, no error. A failing `$(command)` is always a hard error. For
 required credentials, use `${VAR:?message}` so a missing variable
 fails loudly at load time with your message.
@@ -187,7 +187,7 @@ reviewed.
 {
   "options": {
     "skills_paths": ["./skills"],
-    "disabled_tools": ["bash", "sourcegraph"],
+    "disabled_tools": ["shell", "sourcegraph"],
     "disabled_skills": ["glash-config"],
     "tui": {
       "compact_mode": false,
@@ -255,7 +255,7 @@ Hooks are user-defined shell commands that fire on agent events. Currently only 
         "command": ".glash/hooks/protect-files.sh"
       },
       {
-        "matcher": "^bash$",
+        "matcher": "^shell$",
         "command": ".glash/hooks/no-haskell.sh"
       }
     ]
@@ -288,7 +288,7 @@ A JSON payload is piped to the hook command:
   "event": "PreToolUse",
   "session_id": "abc-123",
   "cwd": "/path/to/project",
-  "tool_name": "bash",
+  "tool_name": "shell",
   "tool_input": {"command": "ls -la"}
 }
 ```

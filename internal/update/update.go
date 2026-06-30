@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	githubApiUrl = "https://api.github.com/repos/charmbracelet/glash/releases/latest"
-	userAgent    = "glash/1.0"
+	githubApiUrl = "https://api.github.com/repos/naamfung/glash/releases/latest"
+	userAgent    = "Glash/1.0"
 )
 
 // Default is the default [Client].
