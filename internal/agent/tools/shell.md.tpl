@@ -94,14 +94,14 @@ When user asks to create git commit:
    Commit message here.
 
 {{ if .Attribution.GeneratedWith }}
-💘 Generated with Crush
+💘 Generated with Glash
 {{ end}}
 {{if eq .Attribution.TrailerStyle "assisted-by" }}
 
 Assisted-by: Glash:{{ .ModelID }}
 {{ else if eq .Attribution.TrailerStyle "co-authored-by" }}
 
-Co-Authored-By: Crush <crush@charm.land>
+Co-Authored-By: Glash <glash@local>
 {{ end }}
 
    EOF
@@ -156,7 +156,7 @@ When user asks you to create or update a PR:
    <summary>
 
 {{ if .Attribution.GeneratedWith -}}
-   💘 Generated with Crush
+   💘 Generated with Glash
 {{- end }}
 
    EOF
