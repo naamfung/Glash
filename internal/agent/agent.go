@@ -1675,11 +1675,8 @@ func (a *sessionAgent) GenerateTitle(ctx context.Context, sessionID string, user
 	var titleSaved bool
 	defer func() {
 		if !titleSaved {
-			fallbackCtx, cancel := context.WithTimeout(context.WithoutCancel(ctx), 5*time.Second)
-			defer cancel()
-			if err := a.sessions.Rename(fallbackCtx, sessionID, DefaultSessionName); err != nil {
-				slog.Error("Failed to save fallback session title", "error", err)
-			}
+			// Do not rename to "Current Session"; the session already has
+			// a valid title from creation (e.g., "Session-YYYY-MM-DD-HH-MM-SS").
 		}
 	}()
 

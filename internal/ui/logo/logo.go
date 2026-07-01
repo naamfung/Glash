@@ -4,7 +4,6 @@ package logo
 import (
 	"fmt"
 	"image/color"
-	"math/rand/v2"
 	"strings"
 
 	"charm.land/lipgloss/v2"
@@ -12,9 +11,70 @@ import (
 	"github.com/charmbracelet/x/ansi"
 )
 
-// letterform represents a letterform. It can be stretched horizontally by
-// a given amount via the boolean argument.
-type letterform func(bool) string
+// blockLetters represents the block font letterforms for "GLASH".
+var blockLetters = map[string]string{
+	"G": `██████  
+██      
+██ ████ 
+██   ██ 
+ ██████ `,
+	"L": `██      
+██      
+██      
+██      
+███████ `,
+	"A": `██████  
+██   ██ 
+███████ 
+██   ██ 
+███████ `,
+	"S": `██████  
+      ██
+███████ 
+██      
+███████ `,
+	"H": `██   ██ 
+██   ██ 
+███████ 
+██   ██ 
+██   ██ `,
+}
+
+// renderBlockWord renders the word using block font letters.
+func renderBlockWord(word string) string {
+	var lines []string
+	for lineIdx := 0; lineIdx < 5; lineIdx++ {
+		var lineBuilder strings.Builder
+		for i := 0; i < len(word); i++ {
+			r := rune(word[i])
+			if r == 'G' || r == 'g' {
+				lineBuilder.WriteString(getBlockLine("G", lineIdx))
+			} else if r == 'L' || r == 'l' {
+				lineBuilder.WriteString(getBlockLine("L", lineIdx))
+			} else if r == 'A' || r == 'a' {
+				lineBuilder.WriteString(getBlockLine("A", lineIdx))
+			} else if r == 'S' || r == 's' {
+				lineBuilder.WriteString(getBlockLine("S", lineIdx))
+			} else if r == 'H' || r == 'h' {
+				lineBuilder.WriteString(getBlockLine("H", lineIdx))
+			}
+		}
+		lines = append(lines, lineBuilder.String())
+	}
+	return strings.Join(lines, "\n")
+}
+
+func getBlockLine(letter string, lineIdx int) string {
+	letterStr, ok := blockLetters[letter]
+	if !ok {
+		return strings.Repeat(" ", 8)
+	}
+	lines := strings.Split(letterStr, "\n")
+	if lineIdx < 0 || lineIdx >= len(lines) {
+		return strings.Repeat(" ", 8)
+	}
+	return lines[lineIdx]
+}
 
 const diag = `╱`
 
@@ -49,41 +109,14 @@ func Render(base lipgloss.Style, version string, compact bool, o Opts) string {
 		return lipgloss.NewStyle().Foreground(c).Render(s)
 	}
 
-	// Title.
-	const spacing = 1
-	var hyperLetterforms []letterform
+	// Title using block font.
+	glashWord := "GLASH"
 	if o.Hyper {
-		hyperLetterforms = []letterform{
-			LetterH,
-			LetterYAlt,
-			LetterP,
-			LetterE,
-			LetterR,
-		}
+		glashWord = "HYPERGLASH"
 	}
-	glashLetterforms := []letterform{
-		LetterG,
-		LetterL,
-		LetterA,
-		LetterSAlt,
-		LetterH,
-	}
-	if o.Hyper && !compact {
-		glashLetterforms = append(hyperLetterforms, glashLetterforms...)
-	}
-
-	stretchIndex := -1 // -1 means no stretching.
-	if !compact && !o.Unstable {
-		// Always stretch the same letterform, which is picked once at random.
-		stretchIndex = cachedRandN(len(glashLetterforms))
-	} else if !compact && o.Unstable {
-		// Stretch a random letterform on every render.
-		stretchIndex = rand.IntN(len(glashLetterforms))
-	}
-	glash := renderWord(spacing, stretchIndex, glashLetterforms...)
-	if o.Hyper && compact {
-		glash = renderWord(spacing, stretchIndex, hyperLetterforms...) + "\n" + glash
-	}
+	
+	glash := renderBlockWord(glashWord)
+	
 	glashWidth := lipgloss.Width(glash)
 	b := new(strings.Builder)
 	for r := range strings.SplitSeq(glash, "\n") {

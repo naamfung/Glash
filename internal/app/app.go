@@ -230,7 +230,7 @@ func (app *App) resolveSession(ctx context.Context, continueSessionID string, us
 		return sess, nil
 
 	default:
-		return app.Sessions.Create(ctx, agent.DefaultSessionName)
+		return app.Sessions.Create(ctx, session.GenerateSessionTitle())
 	}
 }
 

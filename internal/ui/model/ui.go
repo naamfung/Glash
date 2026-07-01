@@ -3587,7 +3587,7 @@ func (m *UI) sendMessage(content string, attachments ...message.Attachment) tea.
 
 	var cmds []tea.Cmd
 	if !m.hasSession() {
-		newSession, err := m.com.Workspace.CreateSession(context.Background(), "New Session")
+		newSession, err := m.com.Workspace.CreateSession(context.Background(), session.GenerateSessionTitle())
 		if err != nil {
 			return util.ReportError(err)
 		}
@@ -3641,7 +3641,7 @@ func (m *UI) runShellCommand(command string) tea.Cmd {
 func (m *UI) runShellCommandInternal(command string, isFirstMessage bool) tea.Cmd {
 	var cmds []tea.Cmd
 	if !m.hasSession() {
-		newSession, err := m.com.Workspace.CreateSession(context.Background(), "New Session")
+		newSession, err := m.com.Workspace.CreateSession(context.Background(), session.GenerateSessionTitle())
 		if err != nil {
 			return util.ReportError(err)
 		}
