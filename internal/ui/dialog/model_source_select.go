@@ -50,7 +50,7 @@ var _ Dialog = (*ModelSourceSelect)(nil)
 func NewModelSourceSelect(com *common.Common) *ModelSourceSelect {
 	m := &ModelSourceSelect{
 		com:       com,
-		selected:  ModelSourceOnline,
+		selected:  ModelSourceLocal,
 		back:      false,
 	}
 
