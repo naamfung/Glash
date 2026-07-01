@@ -120,7 +120,9 @@ func (m *ModelSourceSelect) Draw(scr uv.Screen, area uv.Rectangle) *tea.Cursor {
 		localStyle.Render("本地模型"),
 	)
 
-	rc.AddPart(t.Dialog.ContentPanel.Render(options))
+	contentPanelWidth := width - t.Dialog.View.GetHorizontalFrameSize()
+	contentPanelStyle := t.Dialog.ContentPanel.Width(contentPanelWidth).Align(lipgloss.Center)
+	rc.AddPart(contentPanelStyle.Render(options))
 
 	view := rc.Render()
 	DrawCenter(scr, area, view)
