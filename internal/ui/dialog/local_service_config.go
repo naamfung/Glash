@@ -30,6 +30,7 @@ const (
 	LocalServiceLMStudio LocalServiceType = "lmstudio"
 	LocalServiceLlamaCPP LocalServiceType = "llamacpp"
 	LocalServiceOmlx     LocalServiceType = "omlx"
+	LocalServiceAnthropic LocalServiceType = "anthropic"
 )
 
 // String returns the string representation of the [LocalServiceType].
@@ -45,6 +46,8 @@ func (lst LocalServiceType) String() string {
 		return "LM Studio"
 	case LocalServiceLlamaCPP:
 		return "llama.cpp"
+	case LocalServiceAnthropic:
+		return "Anthropic Compatible"
 	default:
 		return "Unknown"
 	}
@@ -80,7 +83,7 @@ var _ Dialog = (*LocalServiceConfig)(nil)
 func NewLocalServiceConfig(com *common.Common) *LocalServiceConfig {
 	m := &LocalServiceConfig{
 		com:                    com,
-		serviceTypes:           []LocalServiceType{LocalServiceLlamaCPP, LocalServiceOllama, LocalServiceOpenAI, LocalServiceLiteLLM, LocalServiceLMStudio},
+		serviceTypes:           []LocalServiceType{LocalServiceLlamaCPP, LocalServiceOllama, LocalServiceOpenAI, LocalServiceLiteLLM, LocalServiceLMStudio, LocalServiceAnthropic},
 		selectedServiceTypeIndex: 0,
 		interfaceType:          LocalServiceLlamaCPP,
 		focusedInput:           0,

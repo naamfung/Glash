@@ -1864,12 +1864,13 @@ func (m *UI) fetchHyperCredits() tea.Cmd {
 func (m *UI) addLocalService(msg dialog.ActionAddLocalService) tea.Cmd {
 	// Validate the local service type.
 	validTypes := map[string]bool{
-		"openai":   true,
-		"ollama":   true,
-		"litellm":  true,
-		"lmstudio": true,
-		"llamacpp": true,
-		"omlx":     true,
+		"openai":    true,
+		"ollama":    true,
+		"litellm":   true,
+		"lmstudio":  true,
+		"llamacpp":  true,
+		"omlx":      true,
+		"anthropic": true,
 	}
 	typeStr := string(msg.Type)
 	if !validTypes[typeStr] {
@@ -1912,7 +1913,25 @@ func (m *UI) addLocalService(msg dialog.ActionAddLocalService) tea.Cmd {
 		fields[fmt.Sprintf("providers.%s.models", providerID)] = models
 	}
 
+	// Save model selection configuration.
+	selectedModel := config.SelectedModel{
+		Provider: providerID,
+	}
+	if msg.Model != "" {
+		selectedModel.Model = msg.Model
+	}
+	modelFields := map[string]any{
+		fmt.Sprintf("models.%s", string(config.SelectedModelTypeLarge)): selectedModel,
+	}
+
 	for key, value := range fields {
+		if err := m.com.Workspace.SetConfigField(config.ScopeGlobal, key, value); err != nil {
+			return util.ReportError(fmt.Errorf("failed to add local service: %v", err))
+		}
+	}
+
+	// Save model fields.
+	for key, value := range modelFields {
 		if err := m.com.Workspace.SetConfigField(config.ScopeGlobal, key, value); err != nil {
 			return util.ReportError(fmt.Errorf("failed to add local service: %v", err))
 		}
