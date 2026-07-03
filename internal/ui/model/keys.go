@@ -72,8 +72,8 @@ type KeyMap struct {
 func DefaultKeyMap() KeyMap {
 	km := KeyMap{
 		Quit: key.NewBinding(
-			key.WithKeys("ctrl+c"),
-			key.WithHelp("ctrl+c", "quit"),
+			key.WithKeys("ctrl+q"),
+			key.WithHelp("ctrl+q", "quit"),
 		),
 		Help: key.NewBinding(
 			key.WithKeys("ctrl+g"),
