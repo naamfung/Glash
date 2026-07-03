@@ -79,18 +79,6 @@ You can use these modules directly in your flake by importing them from NUR. Sin
 
 </details>
 
-<details>
-<summary><strong>Debian/Ubuntu</strong></summary>
-
-```shell
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
-echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
-sudo apt update && sudo apt install Glash
-```
-
-</details>
-
 
 Or, download it:
 
@@ -105,10 +93,6 @@ Or just install it with Go:
 go install github.com/naamfung/Glash@latest
 ```
 
-> [!WARNING]
-> Productivity may increase when using Glash and you may find yourself nerd
-> sniped when first using the application. If the symptoms persist, join the
-> [Slack][slack] or [Discord][discord] and nerd snipe the rest of us.
 
 ## Getting Started
 
@@ -147,23 +131,7 @@ That said, you can also set environment variables for preferred providers.
 | `AZURE_OPENAI_API_KEY`      | Azure OpenAI models (optional when using Entra ID) |
 | `AZURE_OPENAI_API_VERSION`  | Azure OpenAI models                                |
 
-### Subscriptions
 
-If you prefer subscription-based usage, here are some plans that work well in
-Glash:
-
-- [Synthetic](https://synthetic.new/pricing)
-- [GLM Coding Plan](https://z.ai/subscribe)
-- [Kimi Code](https://www.kimi.com/membership/pricing)
-- [MiniMax Coding Plan](https://platform.minimax.io/subscribe/coding-plan)
-
-### By the Way
-
-Is there a provider you’d like to see in Glash? Is there an existing model that needs an update?
-
-Glash’s default model listing is managed in [Catwalk](https://github.com/naamfung/catwalk), a community-supported, open source repository of Glash-compatible models, and you’re welcome to contribute.
-
-<a href="https://github.com/naamfung/catwalk"><img width="174" height="174" alt="Catwalk Badge" src="https://github.com/user-attachments/assets/95b49515-fe82-4409-b10d-5beb0873787d" /></a>
 
 ## Configuration
 
