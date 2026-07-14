@@ -4,6 +4,7 @@ import (
 	"cmp"
 	"fmt"
 	"image"
+	"strings"
 
 	"charm.land/lipgloss/v2"
 	"glash/internal/ui/common"
@@ -43,11 +44,20 @@ func (m *UI) modelInfo(width int) string {
 
 	var modelContext *common.ModelContextInfo
 	if model != nil && m.session != nil {
+		// Determine if it's a local provider to hide cost display
+		isLocalProvider := false
+		if providerConfig, ok := m.com.Config().Providers.Get(model.ModelCfg.Provider); ok {
+			if strings.HasPrefix(providerConfig.Name, "Local ") || strings.HasPrefix(providerConfig.ID, "local-") {
+				isLocalProvider = true
+			}
+		}
+
 		modelContext = &common.ModelContextInfo{
 			ContextUsed:    m.session.CompletionTokens + m.session.PromptTokens,
 			Cost:           m.session.Cost,
 			ModelContext:   model.CatwalkCfg.ContextWindow,
 			EstimatedUsage: m.session.EstimatedUsage,
+			ShowCost:       !isLocalProvider,
 		}
 	}
 	var modelName string
