@@ -4,6 +4,7 @@ import (
 	"cmp"
 	"fmt"
 	"image/color"
+	"math"
 	"strconv"
 	"strings"
 
@@ -94,66 +95,80 @@ func ModelInfo(t *styles.Styles, modelName, providerName, reasoningInfo string, 
 }
 
 // formatTokensAndCost formats token usage and cost with appropriate units
-// (K/M) and percentage of context window.
+// (K/M/G) and percentage of context window.
 func formatTokensAndCost(t *styles.Styles, tokens, contextWindow int64, cost float64, estimated bool, showCost bool) string {
-	var formattedTokens string
-	switch {
-	case tokens >= 1_000_000:
-		formattedTokens = fmt.Sprintf("%.1fM", float64(tokens)/1_000_000)
-	case tokens >= 1_000:
-		formattedTokens = fmt.Sprintf("%.1fK", float64(tokens)/1_000)
-	default:
-		formattedTokens = fmt.Sprintf("%d", tokens)
+	// Helper function to format size with 1024 as the base for K, M, G
+	formatSizeWith1024 := func(size int64) string {
+		switch {
+		case size >= 1024*1024*1024:
+			val := float64(size) / (1024.0 * 1024.0 * 1024.0)
+			val = math.Round(val*10) / 10
+			return fmt.Sprintf("%.1fG", val)
+		case size >= 1024*1024:
+			val := float64(size) / (1024.0 * 1024.0)
+			val = math.Round(val*10) / 10
+			return fmt.Sprintf("%.1fM", val)
+		case size >= 1024:
+			val := float64(size) / 1024.0
+			val = math.Round(val*10) / 10
+			return fmt.Sprintf("%.1fK", val)
+		default:
+			return fmt.Sprintf("%d", size)
+		}
 	}
 
-	if strings.HasSuffix(formattedTokens, ".0K") {
-		formattedTokens = strings.Replace(formattedTokens, ".0K", "K", 1)
-	}
-	if strings.HasSuffix(formattedTokens, ".0M") {
-		formattedTokens = strings.Replace(formattedTokens, ".0M", "M", 1)
+	if showCost {
+		formattedTokens := formatSizeWith1024(tokens)
+
+		// Remove .0K or .0M or .0G suffixes if present
+		if strings.HasSuffix(formattedTokens, ".0K") {
+			formattedTokens = strings.Replace(formattedTokens, ".0K", "K", 1)
+		}
+		if strings.HasSuffix(formattedTokens, ".0M") {
+			formattedTokens = strings.Replace(formattedTokens, ".0M", "M", 1)
+		}
+		if strings.HasSuffix(formattedTokens, ".0G") {
+			formattedTokens = strings.Replace(formattedTokens, ".0G", "G", 1)
+		}
+
+		var percentage float64
+		if contextWindow > 0 {
+			percentage = (float64(tokens) / float64(contextWindow)) * 100
+		}
+
+		formattedTokens = t.ModelInfo.TokenCount.Render(fmt.Sprintf("(%s)", formattedTokens))
+		percentageText := fmt.Sprintf("%d%%", int(percentage))
+		if estimated {
+			percentageText = "~" + percentageText
+		}
+		formattedPercentage := t.ModelInfo.TokenPercentage.Render(percentageText)
+		formattedTokens = fmt.Sprintf("%s %s", formattedPercentage, formattedTokens)
+		if percentage > 80 {
+			formattedTokens = fmt.Sprintf("%s %s", styles.LSPWarningIcon, formattedTokens)
+		}
+
+		formattedCost := t.ModelInfo.Cost.Render(fmt.Sprintf("$%.2f", cost))
+		return fmt.Sprintf("%s %s", formattedTokens, formattedCost)
 	}
 
+	// For local providers, show the context window size in the format: "10.93% 14.0K/128.0K"
 	var percentage float64
 	if contextWindow > 0 {
 		percentage = (float64(tokens) / float64(contextWindow)) * 100
 	}
 
-	formattedTokens = t.ModelInfo.TokenCount.Render(fmt.Sprintf("(%s)", formattedTokens))
-	percentageText := fmt.Sprintf("%d%%", int(percentage))
+	// Format percentage with 2 decimal places
+	percentageText := fmt.Sprintf("%.2f%%", percentage)
 	if estimated {
 		percentageText = "~" + percentageText
 	}
 	formattedPercentage := t.ModelInfo.TokenPercentage.Render(percentageText)
-	formattedTokens = fmt.Sprintf("%s %s", formattedPercentage, formattedTokens)
-	if percentage > 80 {
-		formattedTokens = fmt.Sprintf("%s %s", styles.LSPWarningIcon, formattedTokens)
-	}
 
-	if showCost {
-		formattedCost := t.ModelInfo.Cost.Render(fmt.Sprintf("$%.2f", cost))
-		return fmt.Sprintf("%s %s", formattedTokens, formattedCost)
-	}
+	formattedTokensK := formatSizeWith1024(tokens)
+	formattedContextWindowK := formatSizeWith1024(contextWindow)
 
-	// For local providers, show the context window size
-	var formattedContextWindow string
-	switch {
-	case contextWindow >= 1_000_000:
-		formattedContextWindow = fmt.Sprintf("%.1fM", float64(contextWindow)/1_000_000)
-	case contextWindow >= 1_000:
-		formattedContextWindow = fmt.Sprintf("%.1fK", float64(contextWindow)/1_000)
-	default:
-		formattedContextWindow = fmt.Sprintf("%d", contextWindow)
-	}
-
-	if strings.HasSuffix(formattedContextWindow, ".0K") {
-		formattedContextWindow = strings.Replace(formattedContextWindow, ".0K", "K", 1)
-	}
-	if strings.HasSuffix(formattedContextWindow, ".0M") {
-		formattedContextWindow = strings.Replace(formattedContextWindow, ".0M", "M", 1)
-	}
-
-	formattedContextWindow = t.ModelInfo.TokenCount.Render(formattedContextWindow)
-	return fmt.Sprintf("%s %s", formattedTokens, formattedContextWindow)
+	// Combine into the format: "10.93% 14.0K/128.0K"
+	return fmt.Sprintf("%s %s/%s", formattedPercentage, formattedTokensK, formattedContextWindowK)
 }
 
 // FormatCredits formats an integer with comma separators for thousands.
