@@ -10,6 +10,7 @@ import (
 
 func init() {
 	RegisterEnricher("llamacpp", &llamacppEnricher{})
+	RegisterEnricher("anthropic", &llamacppEnricher{})
 }
 
 // llamacppModelsResponse mirrors the response from llama-server's

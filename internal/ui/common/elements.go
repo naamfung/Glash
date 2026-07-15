@@ -133,7 +133,27 @@ func formatTokensAndCost(t *styles.Styles, tokens, contextWindow int64, cost flo
 		formattedCost := t.ModelInfo.Cost.Render(fmt.Sprintf("$%.2f", cost))
 		return fmt.Sprintf("%s %s", formattedTokens, formattedCost)
 	}
-	return formattedTokens
+
+	// For local providers, show the context window size
+	var formattedContextWindow string
+	switch {
+	case contextWindow >= 1_000_000:
+		formattedContextWindow = fmt.Sprintf("%.1fM", float64(contextWindow)/1_000_000)
+	case contextWindow >= 1_000:
+		formattedContextWindow = fmt.Sprintf("%.1fK", float64(contextWindow)/1_000)
+	default:
+		formattedContextWindow = fmt.Sprintf("%d", contextWindow)
+	}
+
+	if strings.HasSuffix(formattedContextWindow, ".0K") {
+		formattedContextWindow = strings.Replace(formattedContextWindow, ".0K", "K", 1)
+	}
+	if strings.HasSuffix(formattedContextWindow, ".0M") {
+		formattedContextWindow = strings.Replace(formattedContextWindow, ".0M", "M", 1)
+	}
+
+	formattedContextWindow = t.ModelInfo.TokenCount.Render(formattedContextWindow)
+	return fmt.Sprintf("%s %s", formattedTokens, formattedContextWindow)
 }
 
 // FormatCredits formats an integer with comma separators for thousands.
