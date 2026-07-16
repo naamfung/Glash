@@ -17,6 +17,7 @@ import (
 	"fmt"
 	"log/slog"
 	"math"
+	"math/rand"
 	"net/http"
 	"os"
 	"regexp"
@@ -56,9 +57,22 @@ const (
 	largeContextWindowThreshold = 200_000
 	largeContextWindowBuffer    = 20_000
 	smallContextWindowRatio     = 0.2
+
+	// Constants for transient provider error retry (exponential backoff
+	// with Retry-After header support, mirroring Claude Code's design).
+	maxTransientRetries = 10
+	retryBaseDelay      = 500 * time.Millisecond
+	retryMaxDelay       = 32 * time.Second
 )
 
 var userAgent = fmt.Sprintf("Charm-Glash/%s (https://charm.land/glash)", version.Version)
+
+// zeroRetries disables fantasy's built-in step-level retry across all
+// agent.Stream call sites. Retry policy is centralized in the outer
+// loops (main Run loop in Run(), model fallback in GenerateTitle()) so
+// that backoff, Retry-After headers, and state cleanup are applied
+// consistently and not duplicated by the library.
+var zeroRetries = 0
 
 //go:embed templates/title.md
 var titlePrompt []byte
@@ -787,7 +801,7 @@ func (a *sessionAgent) Run(ctx context.Context, call SessionAgentCall) (result *
 	if call.MaxOutputTokens > 0 {
 		maxOutputTokens = &call.MaxOutputTokens
 	}
-	result, err = agent.Stream(genCtx, fantasy.AgentStreamCall{
+	streamCall := fantasy.AgentStreamCall{
 		Prompt:           message.PromptWithTextAttachments(call.Prompt, call.Attachments),
 		Files:            files,
 		Messages:         history,
@@ -1026,7 +1040,58 @@ func (a *sessionAgent) Run(ctx context.Context, call SessionAgentCall) (result *
 				return hasRepeatedToolCalls(steps, loopDetectionWindowSize, loopDetectionMaxRepeats)
 			},
 		},
-	})
+	}
+
+	// Disable fantasy's built-in step-level retry to avoid double-retrying;
+	// the loop below handles retry at the stream level with full control
+	// over backoff, Retry-After headers, and state cleanup.
+	streamCall.MaxRetries = &zeroRetries
+
+	result, err = agent.Stream(genCtx, streamCall)
+	// Retry transient provider errors with exponential backoff + Retry-After
+	// header support (mirroring Claude Code's withRetry design). Cancellation
+	// and non-retryable errors (4xx except 429) break immediately. On retry,
+	// the empty assistant message from the failed attempt is deleted and
+	// state is reset so PrepareStep creates a fresh one.
+	for attempt := 1; err != nil && attempt <= maxTransientRetries; attempt++ {
+		if !isRetryableError(err) {
+			break
+		}
+		if genCtx.Err() != nil {
+			break
+		}
+		delay := getRetryDelay(attempt, err)
+		var providerErr *fantasy.ProviderError
+		errors.As(err, &providerErr)
+		slog.Warn("Retryable provider error, retrying agent stream",
+			append(providerRetryLogFields(providerErr, delay),
+				"attempt", attempt, "max_retries", maxTransientRetries,
+				"error", err)...)
+		// Delete the empty assistant message from the failed attempt so
+		// history stays clean. Only safe when it has no content, reasoning,
+		// or tool calls; a partial message is left in place to preserve
+		// tool call/result pairing for the next attempt's history.
+		if currentAssistant != nil &&
+			currentAssistant.Content().String() == "" &&
+			currentAssistant.ReasoningContent().String() == "" &&
+			len(currentAssistant.ToolCalls()) == 0 {
+			delCtx, delCancel := context.WithTimeout(context.WithoutCancel(genCtx), 5*time.Second)
+			if delErr := a.messages.Delete(delCtx, currentAssistant.ID); delErr != nil {
+				slog.Warn("Failed to delete empty assistant message before retry", "error", delErr)
+			}
+			delCancel()
+		}
+		currentAssistant = nil
+		stepMessages = nil
+		sanitizedToolCalls = make(map[string]bool)
+		shouldSummarize = false
+		select {
+		case <-genCtx.Done():
+			err = genCtx.Err()
+		case <-time.After(delay):
+			result, err = agent.Stream(genCtx, streamCall)
+		}
+	}
 
 	a.eventPromptResponded(call.SessionID, time.Since(startTime).Truncate(time.Second))
 
@@ -1368,6 +1433,9 @@ func (a *sessionAgent) Summarize(ctx context.Context, sessionID string, opts fan
 			summaryMessage.AppendContent(text)
 			return a.messages.Update(genCtx, summaryMessage)
 		},
+		// Disable fantasy's built-in step retry; summarize is a background
+		// task whose failures are surfaced to the user, not silently retried.
+		MaxRetries: &zeroRetries,
 	})
 	if err != nil {
 		isCancelErr := errors.Is(err, context.Canceled)
@@ -1704,6 +1772,10 @@ func (a *sessionAgent) GenerateTitle(ctx context.Context, sessionID string, user
 			}
 			return callCtx, prepared, nil
 		},
+		// Disable fantasy's built-in step retry; title generation has its
+		// own small->large model fallback above, and transient errors are
+		// surfaced to the caller rather than silently retried here.
+		MaxRetries: &zeroRetries,
 	}
 
 	type modelAttempt struct {
@@ -2186,6 +2258,70 @@ func providerRetryLogFields(err *fantasy.ProviderError, delay time.Duration) []a
 		fields = append(fields, "message", err.Message)
 	}
 	return fields
+}
+
+// isRetryableError reports whether err may succeed on retry.
+// It delegates to fantasy.ProviderError.IsRetryable() which checks
+// x-should-retry header, io.ErrUnexpectedEOF, and status codes 408/409/429/5xx.
+// Non-ProviderError network errors (connection reset, DNS failure, etc.)
+// are also retried. Cancellation and deadline errors are never retried.
+func isRetryableError(err error) bool {
+	if err == nil {
+		return false
+	}
+	if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
+		return false
+	}
+	var providerErr *fantasy.ProviderError
+	if errors.As(err, &providerErr) {
+		return providerErr.IsRetryable()
+	}
+	// Non-ProviderError (network error, connection reset, EOF, etc.)
+	return true
+}
+
+// getRetryDelay computes the retry delay for attempt (1-based), honoring
+// the Retry-After / Retry-After-MS response headers when present, with
+// exponential backoff and jitter as fallback. Mirrors Claude Code's
+// withRetry.getRetryDelay design: header value takes precedence (capped
+// at retryMaxDelay for sanity), otherwise base * 2^(attempt-1) + jitter.
+func getRetryDelay(attempt int, err error) time.Duration {
+	// Try Retry-After headers first (server directive takes precedence).
+	if delay := retryAfterFromError(err); delay > 0 {
+		if delay > retryMaxDelay {
+			delay = retryMaxDelay
+		}
+		return delay
+	}
+	// Exponential backoff: base * 2^(attempt-1), capped at maxDelay.
+	delay := retryBaseDelay << uint(attempt-1)
+	if delay > retryMaxDelay {
+		delay = retryMaxDelay
+	}
+	// Add up to 25% jitter to avoid thundering herd.
+	jitter := time.Duration(rand.Int63n(int64(delay) / 4))
+	return delay + jitter
+}
+
+// retryAfterFromError extracts the Retry-After or Retry-After-MS header
+// value from a fantasy.ProviderError, returning 0 if absent or unparseable.
+func retryAfterFromError(err error) time.Duration {
+	var providerErr *fantasy.ProviderError
+	if !errors.As(err, &providerErr) || providerErr.ResponseHeaders == nil {
+		return 0
+	}
+	h := providerErr.ResponseHeaders
+	if ms, ok := h["retry-after-ms"]; ok {
+		if v, err := strconv.ParseFloat(ms, 64); err == nil {
+			return time.Duration(v) * time.Millisecond
+		}
+	}
+	if ra, ok := h["retry-after"]; ok {
+		if v, err := strconv.ParseFloat(ra, 64); err == nil {
+			return time.Duration(v) * time.Second
+		}
+	}
+	return 0
 }
 
 // sanitizeToolInput validates tool call JSON from the provider.
